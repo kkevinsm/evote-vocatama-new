@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class UserSeeder extends Seeder
+class LayoutSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,11 +15,12 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        DB::table('layouts')->insert([
             'id' => 1,
-            'name' => 'admin',
-            'email' => 'admin@softui.com',
-            'password' => Hash::make('secret'),
+            'username' => 'admin',
+            'password' => Hash::make('password'),
+            'layout_name' => 'Admin',
+            'photo' => 'photo.png',
             'created_at' => now(),
             'updated_at' => now()
         ]);
