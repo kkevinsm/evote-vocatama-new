@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.guest')
 
 @section('head')
 <style>
@@ -12,78 +12,70 @@
 @section('content')
 <section class="section">
     <form action="{{ route('guest.pilih.hw') }}" method="POST">
-        <div class="section-header" style="color:#262626">
-            <h1  style="color:#262626">Pilih Calon Ketua Ortom HW</h1>
-            <div class="col">
-                <div class="float-right">
-                    <button id="toastr" type="button" class="btn btn-success" onclick="toast()">Submit</button>
-                    <button id="submitVote" type="submit" class="btn btn-success hidden" disabled>Submit</button>
+        <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 my-3 {{ (Request::is('static-sign-up') ? 'w-100 shadow-none  navbar-transparent mt-4' : 'blur blur-rounded shadow py-2 start-0 end-0 mx4') }}">
+            <div class="container-fluid {{ (Request::is('static-sign-up') ? 'container' : 'container-fluid') }}">
+                <h1 class="navbar-brand font-weight-bolder ms-lg-0 ms-3 {{ (Request::is('static-sign-up') ? 'text-white' : '') }}">
+                Pilih Calon Formatur HW SEPANJANG
+                </h1>
+                <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon mt-2">
+                        <span class="navbar-toggler-bar bar1"></span>
+                        <span class="navbar-toggler-bar bar2"></span>
+                        <span class="navbar-toggler-bar bar3"></span>
+                    </span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navigation">
+                    <ul class="navbar-nav mx-auto"></ul>
+                    
+                    <div class="section-header" style="color:#262626">
+                        <div class="col">
+                            <div class="float-right flex justify-center align-center">
+                                <button id="toastr" type="button" class="btn btn-success" onclick="toast()">Submit</button>
+                                <button id="submitVote" type="submit" class="btn btn-success hidden" disabled>Submit</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </nav>
 
         @csrf
-        <div class="row">
+        <div class="row mt-8">
             @foreach($datas as $data)
-            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <div class="gallery gallery-lg">
-                            <div class="gallery-item" style="margin: 0px 0px 15px 0px" data-toggle="modal"
-                                data-target="#foto{{ $data->id }}" data-image="{{ asset('image/' . $data->image) }}"
-                                data-title="Image 1"></div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="card z-index-2 max-height-600">
+                    <div class="card-body p-3">
+                        <!-- Foto -->
+                        <div class="rounded rounded-xl py-2" style="background-image: url({{ asset('image/' . $data->image) }}); height: 450px; width: 250px; d-flex justify-content-center; width: 100%;"></div>
+
+                        <!-- Information -->
+                        <div class="row mt-2">
+                            <h6 class="col-6 d-flex justify-content-start align-items-center">{{ $data->nama }}</h6>
+                            <div class="col-6 d-flex justify-content-center align-items-center">
+                                <input id="pilihan{{ $data->id }}" type="checkbox" class="hidden" name="category[]"
+                                    value="{{ $data->id }}">
+                                <button id="vote{{$data->id}}" type="button" class="btn btn-success"
+                                    onclick="vote({{ $data->id }}); checkSelected();">Vote</button>
+                                <button id="unVote{{$data->id}}" type="button" class="btn btn-danger hidden"
+                                    onclick="unVote({{ $data->id }}); checkSelected();">Batalkan Vote</button>
+                            </div>
                         </div>
-                        <div>
-                            <input id="pilihan{{ $data->id }}" type="checkbox" class="hidden" name="category[]"
-                                value="{{ $data->id }}">
-                            <button id="vote{{$data->id}}" type="button" class="btn btn-success"
-                                onclick="vote({{ $data->id }}); checkSelected();">Vote</button>
-                            <button id="unVote{{$data->id}}" type="button" class="btn btn-danger hidden"
-                                onclick="unVote({{ $data->id }}); checkSelected();">Batalkan Vote</button>
-                        </div>
-                    </div>
-                    <div class="card-body" style="padding-top: 0px;">
-                        <div style="width:100%; text-align:center">
-                            <button class="btn btn-primary" type="button" data-toggle="collapse"
-                                data-target="#collapseExample1{{$data->id}}" aria-expanded="false"
-                                aria-controls="collapseExample1{{$data->id}}">
-                                VISI
-                            </button>
-                            <button class="btn btn-primary" type="button" data-toggle="collapse"
-                                data-target="#collapseExample2{{$data->id}}" aria-expanded="false"
-                                aria-controls="collapseExample2{{$data->id}}">
-                                MISI
-                            </button>
-                        </div>
-                        <div class="collapse" id="collapseExample1{{$data->id}}"
-                            style="width:100%; border-bottom: 1px solid #c5c5c5; padding:5px; text-align: justify;">
-                            {{ $data->visi }}
-                        </div>
-                        <div class="collapse" id="collapseExample2{{$data->id}}" style="width:100%; padding:5px;">
-                            {{ $data->misi }}
+                        
+
+                        <div class="container border-radius-lg">
+                            <div class="row">
+                                <div class="col-6 py-3 ps-0">
+                                    <h4 class="font-weight-bolder">Visi</h4>
+                                </div>
+                                <div class="col-6 py-3 ps-0">
+                                    <h4 class="font-weight-bolder">Misi</h4>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            {{-- Modal Foto --}}
-            <div class="modal fade" id="foto{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Foto Calon Formatur</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <img class="gallery-item" src="{{ asset('image/' . $data->image) }}"
-                                style="max-width: 350px; max-height:350px;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {{-- End Modal Foto --}}
             @endforeach
         </div>
     </form>
@@ -110,8 +102,9 @@
     //Menghitung
     function checkSelected() {
         var checkboxes = document.getElementsByName('category[]');
-        var count = 0;
+        var count = 9;
 
+        console.log(count);
         for (var i = 0; i < checkboxes.length; i++) {
             if (checkboxes[i].checked) {
                 count++;
@@ -120,7 +113,7 @@
 
         var submitButton = document.getElementById('submitVote');
 
-        if (count === 1) {
+        if (count >= 9) {
             submitButton.disabled = false;
             document.getElementById("toastr").classList.add("hidden");
             document.getElementById("submitVote").classList.remove("hidden");
@@ -136,7 +129,7 @@
     function toast() {
         iziToast.warning({
             title: 'Error',
-            message: 'Pilih 1 Calon Ketua HW!',
+            message: 'Harus Pilih 9 Calon Formatur!',
             position: 'topCenter',
         });
     }

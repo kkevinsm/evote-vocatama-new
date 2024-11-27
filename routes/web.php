@@ -116,6 +116,9 @@ Route::post('/guest/pilih/hw', [GuestController::class, 'pilihhw'])->name('guest
 Route::get('/guest/ts', [GuestController::class, 'ts'])->name('guest.ts');
 Route::post('/guest/pilih/ts', [GuestController::class, 'pilihts'])->name('guest.pilih.ts');
 
+// Guest Terimakasih 
+Route::get('/guest/terimakasih', [GuestController::class, 'terimakasih'])->name('terimakasih');
+
 // Hangker Profile
 Route::get('/hangker', function () {
     return view('hangker');

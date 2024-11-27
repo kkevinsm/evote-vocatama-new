@@ -44,14 +44,14 @@
         <div class="row mt-8">
             @foreach($datas as $data)
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="card z-index-2">
+                <div class="card z-index-2 max-height-600">
                     <div class="card-body p-3">
                         <!-- Foto -->
-                        <div class="rounded rounded-xl py-2" style="background-image: url({{ asset('image/' . $data->image) }}); height: 250px; width: 250px; d-flex justify-content-center; width: 100%;"></div>
+                        <div class="rounded rounded-xl py-2" style="background-image: url({{ asset('image/' . $data->image) }}); height: 450px; width: 250px; d-flex justify-content-center; width: 100%;"></div>
 
                         <!-- Information -->
-                        <div class="row">
-                            <h4 class="col-6 d-flex justify-content-start align-items-center">{{ $data->nama }}</h4>
+                        <div class="row mt-2">
+                            <h6 class="col-6 d-flex justify-content-start align-items-center">{{ $data->nama }}</h6>
                             <div class="col-6 d-flex justify-content-center align-items-center">
                                 <input id="pilihan{{ $data->id }}" type="checkbox" class="hidden" name="category[]"
                                     value="{{ $data->id }}">
