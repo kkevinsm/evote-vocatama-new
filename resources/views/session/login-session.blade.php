@@ -9,11 +9,11 @@
           <div class="row">
             <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
               <div class="text-center mb-2">
-                <img src="../assets/img/bruce-mars.jpg" alt="Logo Instansi" class="img-fluid rounded-circle" 
+                <img src="../assets/img/bruce-mars.jpg" alt="Logo Instansi" class="img-fluid rounded-circle crud" 
                 style="max-width: 150px; border: 2px solid #ccc;">
               </div>
               <div class="card-header pb-0 bg-transparent text-center mb-4">
-                <h2 class="font-weight-bolder text-info text-gradient">Login</h2>
+                <h2 class="font-weight-bolder text-primary text-gradient">crud</h2>
               </div>
               <div class="card"  style="padding: 20px;">
                 <div class="card-body">
@@ -36,7 +36,7 @@
                       @enderror
                     </div>
                     <div class="text-center">
-                      <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0" style="border-radius: 12px;">Login</button>
+                      <button type="submit" class="btn bg-gradient-primary w-100 mt-4 mb-0" style="border-radius: 12px;">Login</button>
                     </div>
                   </form>
                 </div>
