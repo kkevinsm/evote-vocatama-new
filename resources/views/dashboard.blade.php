@@ -17,7 +17,7 @@
                         </div>
                     </div>
                     <div class="col-4 text-end">
-                        <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                        <div class="icon icon-shape bg-gradient-dark shadow text-center border-radius-md">
                             <i class="ni ni-single-02 text-lg opacity-10" aria-hidden="true"></i>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="col-4 text-end">
-                        <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                        <div class="icon icon-shape bg-gradient-dark shadow text-center border-radius-md">
                             <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                         </div>
                     </div>
                     <div class="col-4 text-end">
-                        <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                        <div class="icon icon-shape bg-gradient-dark shadow text-center border-radius-md">
                             <i class="ni ni-check-bold text-lg opacity-10" aria-hidden="true"></i>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                         </div>
                     </div>
                     <div class="col-4 text-end">
-                        <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                        <div class="icon icon-shape bg-gradient-dark shadow text-center border-radius-md">
                             <i class="ni ni-fat-remove text-lg opacity-10" aria-hidden="true"></i>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
 <!-- Pie Charts Section -->
 <div class="row mt-4">
     @for ($i = 1; $i <= 3; $i++)
-        <div class="col-lg-4">
+        <div class="col-lg-4 my-3">
             <div class="card z-index-2">
                 <div class="card-body">
                     <h6 class="mb-3">Total Vote Chart {{ $i }}</h6>
