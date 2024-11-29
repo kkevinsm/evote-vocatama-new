@@ -19,11 +19,11 @@
                 <div class="card-body">
                   <form role="form" method="POST" action="/session">
                     @csrf
-                    <label>Email</label>
+                    <label>Username</label>
                     <div class="mb-3">
-                      <input type="email" class="form-control" name="email" id="email" placeholder="Email" 
+                      <input type="string" class="form-control" name="username" id="username" placeholder="Username" 
                       style="border-radius: 8px; box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);">
-                      @error('email')
+                      @error('username')
                         <p class="text-danger text-xs mt-2">{{ $message }}</p>
                       @enderror
                     </div>

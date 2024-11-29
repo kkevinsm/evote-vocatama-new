@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CanditateController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\FormaturController;
 use App\Http\Controllers\GuestController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\PemilihController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\VoterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
@@ -26,27 +28,27 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('/admin/formatur/index', [FormaturController::class, 'index'])->name('formatur.index');
-    Route::get('/admin/formatur/detail/{id}', [FormaturController::class, 'detail'])->name('formatur.detail');
-    Route::post('/admin/formatur/tambah', [FormaturController::class, 'create'])->name('formatur.tambah');
-    Route::post('/admin/formatur/update/{id}', [FormaturController::class, 'update'])->name('formatur.update');
-    Route::post('/admin/formatur/hapus/{id}', [FormaturController::class, 'destroy'])->name('formatur.hapus');
+	Route::get('/admin/canditate/index', [CanditateController::class, 'index'])->name('canditate.index');
+	Route::get('/admin/canditate/detail/{id}', [CanditateController::class, 'detail'])->name('canditate.detail');
+	Route::post('/admin/canditate/tambah', [CanditateController::class, 'create'])->name('canditate.tambah');
+	Route::post('/admin/canditate/update/{id}', [CanditateController::class, 'update'])->name('canditate.update');
+	Route::post('/admin/canditate/hapus/{id}', [CanditateController::class, 'destroy'])->name('canditate.hapus');
 
-    Route::post('/formatur/import', [FormaturController::class, 'import'])->name('formatur.import');
+	Route::post('/formatur/import', [CanditateController::class, 'import'])->name('formatur.import');
 
-    Route::get('/admin/pemilih/index', [PemilihController::class, 'index'])->name('pemilih.index');
-    Route::get('/admin/pemilih/detail/{id}', [PemilihController::class, 'detail'])->name('pemilih.detail');
-    Route::post('/admin/pemilih/tambah', [PemilihController::class, 'create'])->name('pemilih.tambah');
-    Route::post('/admin/pemilih/hapus/{id}', [PemilihController::class, 'destroy'])->name('pemilih.hapus');
-    Route::get('/admin/pemilih/export', [PemilihController::class, 'export'])->name('pemilih.export');
-    Route::get('/admin/pemilih/active', [PemilihController::class, 'active'])->name('active');
-    Route::get('/admin/pemilih/non-active', [PemilihController::class, 'nonActive'])->name('non-active');
+	Route::get('/admin/voters/index', [VoterController::class, 'index'])->name('voters.index');
+	Route::get('/admin/voters/detail/{id}', [VoterController::class, 'detail'])->name('voters.detail');
+	Route::post('/admin/voters/create', [VoterController::class, 'create'])->name('voters.create');
+	Route::post('/admin/voters/hapus/{id}', [VoterController::class, 'destroy'])->name('voters.hapus');
+	Route::get('/admin/voters/export', [VoterController::class, 'export'])->name('voters.export');
+	Route::get('/admin/voters/active', [VoterController::class, 'active'])->name('active');
+	Route::get('/admin/voters/non-active', [VoterController::class, 'nonActive'])->name('non-active');
 
-    Route::post('/pemilih/import', [PemilihController::class, 'import'])->name('pemilih.import');
+	Route::post('/voters/import', [VoterController::class, 'import'])->name('voters.import');
 
 
 
-    Route::get('/', [HomeController::class, 'home']);
+	Route::get('/', [HomeController::class, 'home']);
 	Route::get('dashboard', function () {
 		return view('dashboard');
 	})->name('dashboard');
@@ -71,22 +73,22 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('tables');
 	})->name('tables');
 
-    Route::get('virtual-reality', function () {
+	Route::get('virtual-reality', function () {
 		return view('virtual-reality');
 	})->name('virtual-reality');
 
-    Route::get('static-sign-in', function () {
+	Route::get('static-sign-in', function () {
 		return view('static-sign-in');
 	})->name('sign-in');
 
-    Route::get('static-sign-up', function () {
+	Route::get('static-sign-up', function () {
 		return view('static-sign-up');
 	})->name('sign-up');
 
-    Route::get('/logout', [SessionsController::class, 'destroy'])->name('logout');
+	Route::get('/logout', [SessionsController::class, 'destroy'])->name('logout');
 	Route::get('/user-profile', [InfoUserController::class, 'create']);
 	Route::post('/user-profile', [InfoUserController::class, 'store']);
-    Route::get('/login', function () {
+	Route::get('/login', function () {
 		return view('dashboard');
 	})->name('sign-up');
 });
@@ -94,10 +96,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Route::group(['middleware' => 'guest'], function () {
-    Route::get('/register', [RegisterController::class, 'create']);
-    Route::post('/register', [RegisterController::class, 'store']);
-    Route::get('/login', [SessionsController::class, 'create']);
-    Route::post('/session', [SessionsController::class, 'store']);
+	Route::get('/register', [RegisterController::class, 'create']);
+	Route::post('/register', [RegisterController::class, 'store']);
+	Route::get('/login', [SessionsController::class, 'create']);
+	Route::post('/session', [SessionsController::class, 'store']);
 	Route::get('/login/forgot-password', [ResetController::class, 'create']);
 	Route::post('/forgot-password', [ResetController::class, 'sendEmail']);
 	Route::get('/reset-password/{token}', [ResetController::class, 'resetPass'])->name('password.reset');
@@ -121,9 +123,9 @@ Route::get('/guest/terimakasih', [GuestController::class, 'terimakasih'])->name(
 
 // Hangker Profile
 Route::get('/hangker', function () {
-    return view('hangker');
+	return view('hangker');
 })->name('hangker');
 
 Route::get('/login', function () {
-    return view('session/login-session');
+	return view('session/login-session');
 })->name('login');

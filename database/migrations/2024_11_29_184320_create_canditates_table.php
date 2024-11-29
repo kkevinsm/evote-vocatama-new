@@ -4,19 +4,17 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFormatursTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('formaturs', function (Blueprint $table) {
+        Schema::create('canditates', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('asal');
+            $table->string('name');
+            $table->string('role');
             $table->string('visi')->nullable();
             $table->string('misi')->nullable();
             $table->string('image')->nullable();
@@ -26,11 +24,9 @@ class CreateFormatursTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('formaturs');
+        Schema::dropIfExists('canditates');
     }
-}
+};
