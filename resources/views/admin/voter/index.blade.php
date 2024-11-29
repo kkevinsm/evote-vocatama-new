@@ -9,9 +9,9 @@
             <div class="card-header pb-0 d-flex justify-content-between align-items-center">
               <h6>Voters Data</h6>
               <div>
-                <a href="{{ route('voters.import') }}" class="btn btn-sm btn-primary">Import</a>
-                <a href="{{ route('voters.export') }}" class="btn btn-sm btn-success">Export</a>
-                <button href="#" id="modal-add" class="btn btn-sm btn-info" data-toggle="modal" data-target="#add">Add</button>
+                <a href="{{ route('voters.import') }}" class="btn btn-sm btn-success">Import</a>
+                <a href="{{ route('voters.export') }}" class="btn btn-sm btn-danger">Export</a>
+                <button href="#" id="modal-add" class="btn btn-sm bg-gradient-primary" data-toggle="modal" data-target="#add">+&nbsp; Add</button>
               </div>
             </div>
             <div class="card-body px-0 pt-0 pb-2">

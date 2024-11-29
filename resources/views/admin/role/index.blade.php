@@ -12,7 +12,7 @@
                             <h5 class="mb-0">Roles Vote</h5>
                         </div>
                         <div class="d-flex align-items-center">
-                            <a href="#" class="btn btn-success btn-sm mb-0 me-2" type="button">
+                            <a href="#" class="btn btn-success btn-sm mb-0 me-2" type="button" data-bs-toggle="modal" data-bs-target="#add">
                                 New
                             </a>
                             <input type="search" class="form-control form-control-sm" placeholder="Search ..." aria-label="Search">
@@ -50,28 +50,9 @@
                                         <p class="text-xs font-weight-bold mb-0">Admin</p>
                                     </td>
                                     <td class="text-center">
-                                        <a href="#" class="btn btn-info btn-sm mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit">
+                                        <button href="#" class="btn btn-info btn-sm mx-3" data-bs-toggle="modal" data-bs-target="#edit">
                                             Edit
-                                        </a>
-                                        <button class="btn btn-danger btn-sm mx-3" data-bs-toggle="tooltip" data-bs-original-title="Delete">
-                                            Delete
                                         </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="ps-4">
-                                        <p class="text-xs font-weight-bold mb-0">2</p>
-                                    </td>
-                                    <td class="text-center">
-                                        <p class="text-xs font-weight-bold mb-0">Creator</p>
-                                    </td>
-                                    <td class="text-center">
-                                        <p class="text-xs font-weight-bold mb-0">Creator</p>
-                                    </td>
-                                    <td class="text-center">
-                                        <a href="#" class="btn btn-info btn-sm mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit">
-                                            Edit
-                                        </a>
                                         <button class="btn btn-danger btn-sm mx-3" data-bs-toggle="tooltip" data-bs-original-title="Delete">
                                             Delete
                                         </button>
@@ -86,4 +67,69 @@
     </div>
 </div>
 
+<!-- Modal Tambah -->
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add Role</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Description Role</label>
+                  <input type="text" class="form-control" value="Hangker Sepanjang" id="description-role">
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Max vote</label>
+                    <input type="number" class="form-control" value="0" id="max-vote" min="0">
+                 </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn bg-gradient-success">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- Modal  -->
+
+<!-- Modal Edit -->
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Role</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Description Role</label>
+                        <input type="text" class="form-control" value="Hangker Sepanjang" id="description-role">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Max vote</label>
+                        <input type="number" class="form-control" value="0" id="max-vote" min="0">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn bg-gradient-success">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal  -->
+
+    
 @endsection

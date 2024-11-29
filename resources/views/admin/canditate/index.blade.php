@@ -70,30 +70,6 @@
                                         </button>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="ps-4">
-                                        <p class="text-xs font-weight-bold mb-0">2</p>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <img src="/assets/img/team-1.jpg" class="avatar avatar-sm me-3">
-                                        </div>
-                                    </td>
-                                    <td class="text-center">
-                                        <p class="text-xs font-weight-bold mb-0">Creator</p>
-                                    </td>
-                                    <td class="text-center">
-                                        <p class="text-xs font-weight-bold mb-0">Creator</p>
-                                    </td>
-                                    <td class="text-center">
-                                        <a href="#" class="btn btn-info btn-sm mx-3" data-bs-toggle="tooltip" data-bs-original-title="Detail user">
-                                            Detail
-                                        </a>
-                                        <button class="btn btn-danger btn-sm mx-3" data-bs-toggle="tooltip" data-bs-original-title="Delete user">
-                                            Delete
-                                        </button>
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
