@@ -110,7 +110,7 @@ class AdminController extends Controller
         $unvoted = User::where('status', 1)->get();
 
 
-        // return $datas;
+        // return $logs;
         return view('dashboard', compact([
             'datas',
             'logs',
