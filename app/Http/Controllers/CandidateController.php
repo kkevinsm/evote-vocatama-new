@@ -7,7 +7,7 @@ use App\Models\Canditate;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
-class CanditateController extends Controller
+class CandidateController extends Controller
 {
     public function index()
     {
