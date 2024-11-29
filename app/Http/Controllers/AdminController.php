@@ -10,7 +10,10 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\UsersImport;
 use App\Imports\PemilihsImport;
+use App\Models\Canditate;
+use App\Models\Log;
 use App\Models\Pemilih;
+use App\Models\Role;
 
 class AdminController extends Controller
 {
@@ -94,6 +97,27 @@ class AdminController extends Controller
             'suara_ipm_23',
             'suara_ipm_24',
             'suara_ipm_25',
+        ]));
+    }
+
+    public function dashboard()
+    {
+        $datas = Role::all();
+        $logs = Log::all();
+        $candidates = Canditate::all();
+        $voters = User::where('role_id', 2)->get();
+        $voted = User::where('status', 2)->get();
+        $unvoted = User::where('status', 1)->get();
+
+
+        // return $datas;
+        return view('dashboard', compact([
+            'datas',
+            'logs',
+            'candidates',
+            'voters',
+            'voted',
+            'unvoted'
         ]));
     }
 

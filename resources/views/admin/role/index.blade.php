@@ -39,15 +39,16 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($datas as $index => $data)
                                 <tr>
                                     <td class="ps-4">
-                                        <p class="text-xs font-weight-bold mb-0">1</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $index+1 }}</p>
                                     </td>
                                     <td class="text-center">
-                                        <p class="text-xs font-weight-bold mb-0">Admin</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $data->name }}</p>
                                     </td>
                                     <td class="text-center">
-                                        <p class="text-xs font-weight-bold mb-0">Admin</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $data->max_vote }}</p>
                                     </td>
                                     <td class="text-center">
                                         <button href="#" class="btn btn-info btn-sm mx-3" data-bs-toggle="modal" data-bs-target="#edit">

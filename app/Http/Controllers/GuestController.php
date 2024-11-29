@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Canditate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Formatur;
+use App\Models\Log;
 use App\Models\Pilihan;
 use App\Models\Pemilih;
 use App\Models\User;
@@ -14,7 +16,7 @@ class GuestController extends Controller
 
     public function ipm()
     {
-        $datas = Formatur::where('asal', 'ipm')->get();
+        $datas = Canditate::where('role', 'ipm')->get();
         return view('guest.ipm', compact([
             'datas'
         ]));
@@ -22,7 +24,7 @@ class GuestController extends Controller
 
     public function hw()
     {
-        $datas = Formatur::where('asal', 'hw')->get();
+        $datas = Canditate::where('role', 'hw')->get();
         return view('guest.hw', compact([
             'datas'
         ]));
@@ -30,7 +32,7 @@ class GuestController extends Controller
 
     public function ts()
     {
-        $datas = Formatur::where('asal', 'ts')->get();
+        $datas = Canditate::where('role', 'ts')->get();
         return view('guest.ts', compact([
             'datas'
         ]));
@@ -39,9 +41,9 @@ class GuestController extends Controller
     public function pilihipm(Request $request)
     {
         foreach ($request->category as $value){
-            Pilihan::create([
-                'dari' => Auth::user()->id,
-                'untuk' => $value,
+            Log::create([
+                'user_id' => Auth::user()->id,
+                'canditate_id' => $value,
             ]);
         }        
 
@@ -51,9 +53,9 @@ class GuestController extends Controller
     public function pilihhw(Request $request)
     {
         foreach ($request->category as $value){
-            Pilihan::create([
-                'dari' => Auth::user()->id,
-                'untuk' => $value,
+            Log::create([
+                'user_id' => Auth::user()->id,
+                'canditate_id' => $value,
             ]);
         }
 
@@ -63,9 +65,9 @@ class GuestController extends Controller
     public function pilihts(Request $request)
     {
         foreach ($request->category as $value){
-            Pilihan::create([
-                'dari' => Auth::user()->id,
-                'untuk' => $value,
+            Log::create([
+                'user_id' => Auth::user()->id,
+                'canditate_id' => $value,
             ]);
         }
 

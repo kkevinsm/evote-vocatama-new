@@ -13,7 +13,7 @@
                     <div class="col-8">
                         <div class="numbers">
                             <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Candidates</p>
-                            <h5 class="font-weight-bolder mb-0">12</h5>
+                            <h5 class="font-weight-bolder mb-0">{{ count($candidates) }}</h5>
                         </div>
                     </div>
                     <div class="col-4 text-end">
@@ -34,7 +34,7 @@
                     <div class="col-8">
                         <div class="numbers">
                             <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Voters</p>
-                            <h5 class="font-weight-bolder mb-0">1</h5>
+                            <h5 class="font-weight-bolder mb-0">{{ count($voters) }}</h5>
                         </div>
                     </div>
                     <div class="col-4 text-end">
@@ -55,7 +55,7 @@
                     <div class="col-8">
                         <div class="numbers">
                             <p class="text-sm mb-0 text-capitalize font-weight-bold">Voted</p>
-                            <h5 class="font-weight-bolder mb-0">1</h5>
+                            <h5 class="font-weight-bolder mb-0">{{ count($voted) }}</h5>
                         </div>
                     </div>
                     <div class="col-4 text-end">
@@ -76,7 +76,7 @@
                     <div class="col-8">
                         <div class="numbers">
                             <p class="text-sm mb-0 text-capitalize font-weight-bold">Unvoted</p>
-                            <h5 class="font-weight-bolder mb-0">0</h5>
+                            <h5 class="font-weight-bolder mb-0">{{ count($unvoted)-1 }}</h5>
                         </div>
                     </div>
                     <div class="col-4 text-end">
@@ -92,21 +92,18 @@
 
 <!-- Pie Charts Section -->
 <div class="row mt-4">
-    @for ($i = 1; $i <= 3; $i++)
+    @foreach($datas as $index => $data)
         <div class="col-lg-4 my-3">
             <div class="card z-index-2">
                 <div class="card-body">
-                    <h6 class="mb-3">Total Vote Chart {{ $i }}</h6>
-                    <canvas id="pieChart{{ $i }}" height="200"></canvas>
+                    <h6 class="mb-3">Total Vote Chart {{ $data->name }}</h6>
+                    <canvas id="pieChart{{ $index+1 }}" height="200"></canvas>
                 </div>
             </div>
         </div>
-    @endfor
+    @endforeach
 </div>
 
-@endsection
-
-@push('dashboard')
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const options = {
@@ -117,11 +114,28 @@
             }
         };
 
-        const dataSets = [
-            { labels: ['Option A', 'Option B', 'Option C'], data: [30, 50, 20] },
-            { labels: ['Option A', 'Option B', 'Option C'], data: [40, 35, 25] },
-            { labels: ['Option A', 'Option B', 'Option C'], data: [55, 30, 15] }
-        ];
+        const dataRoles = @json($datas);
+        const dataSets = dataRoles.map((item) => ({
+            labels: [item.name],
+            data: [item.max_vote],
+        }));
+
+        const dataLogs = @json($logs);
+        // const dataSets = dataLogs.map((item) => ({
+        //     labels: [item.name],
+        //     data: [item.max_vote],
+        // }));
+        
+
+        // const dataSets = [
+        //     { labels: ['Option A', 'Option B', 'Option C'], data: [30, 50, 20] },
+        //     { labels: ['Option A', 'Option B', 'Option C'], data: [40, 35, 25] },
+        //     { labels: ['Option A', 'Option B', 'Option C'], data: [55, 30, 15] }
+        // ];
+
+        // const dataSets = [
+
+        // ]
 
         dataSets.forEach((dataSet, index) => {
             const ctx = document.getElementById(`pieChart${index + 1}`).getContext('2d');
@@ -241,4 +255,4 @@
         });
     });
 </script>
-@endpush
+@endsection
