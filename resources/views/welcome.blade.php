@@ -6,6 +6,11 @@
 
         <title>Laravel</title>
 
+        <!-- Tambahkan CSS DataTables -->
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.3/css/buttons.dataTables.min.css">
+
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -128,5 +133,27 @@
                 </div>
             </div>
         </div>
+
+            <!-- Tambahkan JS DataTables -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.3/js/dataTables.buttons.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#users-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{ route('users.index') }}',
+                columns: [
+                    { data: 'id', name: 'id' },
+                    { data: 'name', name: 'name' },
+                    { data: 'email', name: 'email' },
+                    { data: 'created_at', name: 'created_at' },
+                    { data: 'updated_at', name: 'updated_at' },
+                    { data: 'action', name: 'action', orderable: false, searchable: false },
+                ],
+            });
+        });
+    </script>
     </body>
 </html>
