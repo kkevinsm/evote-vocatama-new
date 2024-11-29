@@ -15,7 +15,7 @@
               <div class="card-header pb-0 bg-transparent text-center mb-4">
                 <h2 class="font-weight-bolder text-info text-gradient">Login</h2>
               </div>
-              <div class="card card-plain mt-0" style="border-radius: 16px; background-color: #fff; box-shadow: 0 30px 30px -25px rgba(43, 70, 150, 0.25); padding: 20px;">
+              <div class="card"  style="padding: 20px;">
                 <div class="card-body">
                   <form role="form" method="POST" action="/session">
                     @csrf
