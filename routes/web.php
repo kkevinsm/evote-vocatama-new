@@ -28,11 +28,11 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('/admin/canditate/index', [CanditateController::class, 'index'])->name('canditate.index');
-	Route::get('/admin/canditate/detail/{id}', [CanditateController::class, 'detail'])->name('canditate.detail');
-	Route::post('/admin/canditate/tambah', [CanditateController::class, 'create'])->name('canditate.tambah');
-	Route::post('/admin/canditate/update/{id}', [CanditateController::class, 'update'])->name('canditate.update');
-	Route::post('/admin/canditate/hapus/{id}', [CanditateController::class, 'destroy'])->name('canditate.hapus');
+	Route::get('/admin/candidate/index', [CanditateController::class, 'index'])->name('candidate.index');
+	Route::get('/admin/candidate/detail/{id}', [CanditateController::class, 'detail'])->name('candidate.detail');
+	Route::post('/admin/candidate/tambah', [CanditateController::class, 'create'])->name('candidate.tambah');
+	Route::post('/admin/candidate/update/{id}', [CanditateController::class, 'update'])->name('candidate.update');
+	Route::post('/admin/candidate/hapus/{id}', [CanditateController::class, 'destroy'])->name('candidate.hapus');
 
 	Route::post('/formatur/import', [CanditateController::class, 'import'])->name('formatur.import');
 
@@ -45,6 +45,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/admin/voters/non-active', [VoterController::class, 'nonActive'])->name('non-active');
 
 	Route::post('/voters/import', [VoterController::class, 'import'])->name('voters.import');
+
+	Route::get('/admin/roles/index', [VoterController::class, 'index'])->name('roles.index');
+
+	Route::get('/admin/profile/index', [VoterController::class, 'index'])->name('profile.index');
 
 
 
