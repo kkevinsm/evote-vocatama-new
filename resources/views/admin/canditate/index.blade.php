@@ -12,12 +12,8 @@
                             <h5 class="mb-0">Candidates Data</h5>
                         </div>
                         <div>
-                            <a href="#" class="btn btn-success btn-sm mb-0" type="button">
-                                Import
-                            </a>
-                            <a href="#" class="btn bg-gradient-primary btn-sm mb-0" type="button">
-                                +&nbsp; Add
-                            </a>
+                            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#import">Import</button>
+                            <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#add">Add</button>
                         </div>
                     </div>
                 </div>
@@ -78,5 +74,64 @@
         </div>
     </div>
 </div>
+
+<!-- Modal Add -->
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addModalLabel">Add New Voter</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="{{ route('voters.create') }}" method="POST">
+            @csrf
+            <div class="form-group">
+              <label for="name" class="col-form-label">Name:</label>
+              <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="username" class="col-form-label">Username:</label>
+              <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+              <label for="password" class="col-form-label">Password:</label>
+              <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn bg-gradient-primary">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Import -->
+<div class="modal fade" id="import" tabindex="-1" role="dialog" aria-labelledby="importModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="importModalLabel">Import Voters</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="{{ route('voters.import') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="form-group">
+              <label for="file" class="col-form-label">Upload File:</label>
+              <input type="file" class="form-control" id="file" name="file" accept=".csv, .xlsx" required>
+              <small class="text-muted">Supported formats: CSV, XLSX</small>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn bg-gradient-primary">Upload</button>
+        </div>
+      </div>
+    </div>
+  </div>  
 
 @endsection
