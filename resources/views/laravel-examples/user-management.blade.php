@@ -3,15 +3,6 @@
 @section('content')
 
 <div>
-    <!-- <div class="alert alert-secondary mx-4" role="alert">
-        <span class="text-white">
-            <strong>Add, Edit, Delete features are not functional!</strong> This is a
-            <strong>PRO</strong> feature! Click <strong>
-            <a href="https://www.creative-tim.com/live/soft-ui-dashboard-pro-laravel" target="_blank" class="text-white">here</a></strong>
-            to see the PRO product!
-        </span>
-    </div> -->
-
     <div class="row">
         <div class="col-12">
             <div class="card mb-4 mx-4">
@@ -20,7 +11,14 @@
                         <div>
                             <h5 class="mb-0">Candidates Data</h5>
                         </div>
-                        <a href="#" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New User</a>
+                        <div>
+                            <a href="#" class="btn btn-success btn-sm mb-0" type="button">
+                                Import
+                            </a>
+                            <a href="#" class="btn bg-gradient-primary btn-sm mb-0" type="button">
+                                +&nbsp; Add
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
@@ -28,25 +26,19 @@
                         <table class="table align-items-center mb-0">
                             <thead>
                                 <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="width: 5%;">
                                         No
                                     </th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2" style="width: 5%;">
                                         Photo
                                     </th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="width: 30%;">
                                         Name
                                     </th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Email
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="width: 30%;">
+                                        Role
                                     </th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        role
-                                    </th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Creation Date
-                                    </th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="width: 20%;">
                                         Action
                                     </th>
                                 </tr>
@@ -65,21 +57,17 @@
                                         <p class="text-xs font-weight-bold mb-0">Admin</p>
                                     </td>
                                     <td class="text-center">
-                                        <p class="text-xs font-weight-bold mb-0">admin@softui.com</p>
-                                    </td>
-                                    <td class="text-center">
                                         <p class="text-xs font-weight-bold mb-0">Admin</p>
                                     </td>
                                     <td class="text-center">
-                                        <span class="text-secondary text-xs font-weight-bold">16/06/18</span>
-                                    </td>
-                                    <td class="text-center">
-                                        <a href="#" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit user">
-                                            <i class="fas fa-user-edit text-secondary"></i>
+                                        <!-- Button Detail -->
+                                        <a href="#" class="btn btn-info btn-sm mx-3" data-bs-toggle="tooltip" data-bs-original-title="Detail user">
+                                            Detail
                                         </a>
-                                        <span>
-                                            <i class="cursor-pointer fas fa-trash text-secondary"></i>
-                                        </span>
+                                        <!-- Button Delete -->
+                                        <button class="btn btn-danger btn-sm mx-3" data-bs-toggle="tooltip" data-bs-original-title="Delete user">
+                                            Delete
+                                        </button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -95,21 +83,15 @@
                                         <p class="text-xs font-weight-bold mb-0">Creator</p>
                                     </td>
                                     <td class="text-center">
-                                        <p class="text-xs font-weight-bold mb-0">creator@softui.com</p>
-                                    </td>
-                                    <td class="text-center">
                                         <p class="text-xs font-weight-bold mb-0">Creator</p>
                                     </td>
                                     <td class="text-center">
-                                        <span class="text-secondary text-xs font-weight-bold">05/05/20</span>
-                                    </td>
-                                    <td class="text-center">
-                                        <a href="#" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit user">
-                                            <i class="fas fa-user-edit text-secondary"></i>
+                                        <a href="#" class="btn btn-info btn-sm mx-3" data-bs-toggle="tooltip" data-bs-original-title="Detail user">
+                                            Detail
                                         </a>
-                                        <span>
-                                            <i class="cursor-pointer fas fa-trash text-secondary"></i>
-                                        </span>
+                                        <button class="btn btn-danger btn-sm mx-3" data-bs-toggle="tooltip" data-bs-original-title="Delete user">
+                                            Delete
+                                        </button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -120,5 +102,5 @@
         </div>
     </div>
 </div>
- 
+
 @endsection

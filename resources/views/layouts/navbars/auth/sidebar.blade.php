@@ -78,7 +78,7 @@
               </g>
             </svg>
           </div>
-          <span class="nav-link-text ms-1">Roles ID</span>
+          <span class="nav-link-text ms-1">Roles Vote</span>
         </a>
       </li>
       <li class="nav-item mt-2">
