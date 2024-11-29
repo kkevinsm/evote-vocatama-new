@@ -28,10 +28,8 @@
             <p class="mb-0 text-secondary">
               Copyright © <script>
                 document.write(new Date().getFullYear())
-              </script> Soft by 
-              <a style="color: #252f40;" href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
-              &
-              <a style="color: #252f40;" href="https://www.updivision.com" class="font-weight-bold ml-1" target="_blank">UPDIVISION</a>.
+              </script>  made with ❤️ by
+              <a href="https://www.hangker-sepanjang.com" class="font-weight-bold" target="_blank">Hangker Sepanjang</a>
             </p>
           </div>
         </div>
