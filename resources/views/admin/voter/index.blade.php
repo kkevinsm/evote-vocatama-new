@@ -9,9 +9,9 @@
             <div class="card-header pb-0 d-flex justify-content-between align-items-center">
               <h6>Voters Data</h6>
               <div>
-                <a href="{{ route('voters.import') }}" class="btn btn-sm btn-primary">Import</a>
+                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#import">Import</button>
                 <a href="{{ route('voters.export') }}" class="btn btn-sm btn-success">Export</a>
-                <button href="#" id="modal-add" class="btn btn-sm btn-info" data-toggle="modal" data-target="#add">Add</button>
+                <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#add">Add</button>
               </div>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
@@ -63,58 +63,64 @@
       </div>
     </div>
   </main>
-  
-    <!-- Modal Tambah -->
-    <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Add Voter</h5>
-            </div>
-            <form action="{{ route('voters.create') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-body">
-                    <div class="card-body">
-                        <div class="form-group row">
-                            <label for="name" class="col-sm-3 col-form-label">Name</label>
-                            <div class="col-sm-9">
-                                <input name="name" type="text" class="form-control" id="name" placeholder="Name" required>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="Role" class="col-sm-3 col-form-label">Role</label>
-                            <div class="col-sm-9">
-                                <select class="form-control" name="role">
-                                    <option value="Cabang Sepanjang">Cabang Sepanjang</option>
-                                    <option value="SMA Muhammadiyah 1 Taman">SMA Muhammadiyah 1 Taman</option>
-                                    <option value="Vocatama">Vocatama</option>
-                                    <option value="SMP Muhammadiyah 2 Taman">SMP Muhammadiyah 2 Taman</option>
-                                    <option value="Mts Muhammadiyah 1 Taman">Mts Muhammadiyah 1 Taman</option>
-                                </select>
-                                <!-- <input name="asal" type="text" class="form-control" id="nama" placeholder="Nama" required> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" id="close-modal" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-            </form>
-            </div>
-        </div>
+
+  <!-- Modal Add -->
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addModalLabel">Add New Voter</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{{ route('voters.create') }}" method="POST">
+          @csrf
+          <div class="form-group">
+            <label for="name" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="username" class="col-form-label">Username:</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+          </div>
+          <div class="form-group">
+            <label for="password" class="col-form-label">Password:</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn bg-gradient-primary">Save</button>
+      </div>
     </div>
-    <!-- Modal  -->
+  </div>
+</div>
 
-    <script>
-        document.getElementById("modal-add").addEventListener("click", function () {
-            const modal = document.getElementById("add");
-            modal.style.display = "contents";
-        });
+<!-- Modal Import -->
+<div class="modal fade" id="import" tabindex="-1" role="dialog" aria-labelledby="importModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="importModalLabel">Import Voters</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{{ route('voters.import') }}" method="POST" enctype="multipart/form-data">
+          @csrf
+          <div class="form-group">
+            <label for="file" class="col-form-label">Upload File:</label>
+            <input type="file" class="form-control" id="file" name="file" accept=".csv, .xlsx" required>
+            <small class="text-muted">Supported formats: CSV, XLSX</small>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn bg-gradient-primary">Upload</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-        document.getElementById("close-modal").addEventListener("click", function () {
-            const modal = document.getElementById("add");
-            modal.style.display = "none";
-        });
-    </script>
 @endsection
