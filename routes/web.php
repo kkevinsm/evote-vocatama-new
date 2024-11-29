@@ -7,6 +7,7 @@ use App\Http\Controllers\GuestController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfoUserController;
 use App\Http\Controllers\PemilihController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\RoleController;
@@ -47,7 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/admin/role/index', [RoleController::class, 'index'])->name('role.index');
 
-	Route::get('/admin/profile/index', [VoterController::class, 'index'])->name('profile.index');
+	Route::get('/admin/profile/index', [ProfileController::class, 'index'])->name('profile.index');
 
 
 
