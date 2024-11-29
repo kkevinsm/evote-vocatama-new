@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\CanditateController;
+use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\FormaturController;
 use App\Http\Controllers\GuestController;
@@ -9,6 +9,7 @@ use App\Http\Controllers\InfoUserController;
 use App\Http\Controllers\PemilihController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\VoterController;
 use Illuminate\Http\Request;
@@ -28,13 +29,12 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('/admin/candidate/index', [CanditateController::class, 'index'])->name('candidate.index');
-	Route::get('/admin/candidate/detail/{id}', [CanditateController::class, 'detail'])->name('candidate.detail');
-	Route::post('/admin/candidate/tambah', [CanditateController::class, 'create'])->name('candidate.tambah');
-	Route::post('/admin/candidate/update/{id}', [CanditateController::class, 'update'])->name('candidate.update');
-	Route::post('/admin/candidate/hapus/{id}', [CanditateController::class, 'destroy'])->name('candidate.hapus');
-
-	Route::post('/formatur/import', [CanditateController::class, 'import'])->name('formatur.import');
+	Route::get('/admin/candidate/index', [CandidateController::class, 'index'])->name('candidate.index');
+	Route::get('/admin/candidate/detail/{id}', [CandidateController::class, 'detail'])->name('candidate.detail');
+	Route::post('/admin/candidate/tambah', [CandidateController::class, 'create'])->name('candidate.tambah');
+	Route::post('/admin/candidate/update/{id}', [CandidateController::class, 'update'])->name('candidate.update');
+	Route::post('/admin/candidate/hapus/{id}', [CandidateController::class, 'destroy'])->name('candidate.hapus');
+	Route::post('/formatur/import', [CandidateController::class, 'import'])->name('formatur.import');
 
 	Route::get('/admin/voters/index', [VoterController::class, 'index'])->name('voters.index');
 	Route::get('/admin/voters/detail/{id}', [VoterController::class, 'detail'])->name('voters.detail');
@@ -43,10 +43,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/admin/voters/export', [VoterController::class, 'export'])->name('voters.export');
 	Route::get('/admin/voters/active', [VoterController::class, 'active'])->name('active');
 	Route::get('/admin/voters/non-active', [VoterController::class, 'nonActive'])->name('non-active');
-
 	Route::post('/voters/import', [VoterController::class, 'import'])->name('voters.import');
 
-	Route::get('/admin/roles/index', [VoterController::class, 'index'])->name('roles.index');
+	Route::get('/admin/role/index', [RoleController::class, 'index'])->name('role.index');
 
 	Route::get('/admin/profile/index', [VoterController::class, 'index'])->name('profile.index');
 
