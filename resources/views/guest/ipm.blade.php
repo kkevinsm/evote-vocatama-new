@@ -10,76 +10,89 @@
 @endsection
 
 @section('content')
-<section class="section">
-    <form action="{{ route('guest.pilih.ipm') }}" method="POST">
-        <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 my-3 {{ (Request::is('static-sign-up') ? 'w-100 shadow-none  navbar-transparent mt-4' : 'blur blur-rounded shadow py-2 start-0 end-0 mx4') }}">
-            <div class="container-fluid {{ (Request::is('static-sign-up') ? 'container' : 'container-fluid') }}">
-                <h1 class="navbar-brand font-weight-bolder ms-lg-0 ms-3 {{ (Request::is('static-sign-up') ? 'text-white' : '') }}">
-                Pilih Calon Formatur IPM SEPANJANG
-                </h1>
-                <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon mt-2">
-                        <span class="navbar-toggler-bar bar1"></span>
-                        <span class="navbar-toggler-bar bar2"></span>
-                        <span class="navbar-toggler-bar bar3"></span>
-                    </span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navigation">
-                    <ul class="navbar-nav mx-auto"></ul>
-                    
-                    <div class="section-header" style="color:#262626">
-                        <div class="col">
-                            <div class="float-right flex justify-center align-center">
-                                <button id="toastr" type="button" class="btn btn-success" onclick="toast()">Submit</button>
-                                <button id="submitVote" type="submit" class="btn btn-success hidden" disabled>Submit</button>
-                            </div>
+<div>
+        <div class="container-fluid">
+            <div class="card card-body blur shadow-blur">
+                <div class="row gx-4">
+                    <div class="col-auto">
+                        <div class="avatar avatar-xl position-relative">
+                            <img src="{{ asset('assets/img/bruce-mars.jpg') }}" alt="CRUD" class="w-100 border-radius-lg shadow-sm">
                         </div>
+                    </div>
+                    <div class="col-auto my-auto">
+                        <div class="h-100">
+                            <p class="mb-0 font-weight-bold text-sm">
+                                PILIH CALON FORMATUR
+                            </p>
+                            <h5 class="mb-1">
+                                CRUD ROLES (EX: IKATAN PELAJAR MUHAMMADIYAH)
+                            </h5>
+                        </div>
+                    </div>
+                    <!-- Submit Button Section in the Same Row -->
+                    <div class="col-auto my-auto d-flex justify-content-end align-items-center">
+                        <form action="/submit-path" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
                     </div>
                 </div>
             </div>
-        </nav>
-
-        @csrf
-        <div class="row mt-8">
-            @foreach($datas as $data)
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="card z-index-2 max-height-600">
-                    <div class="card-body p-3">
-                        <!-- Foto -->
-                        <div class="rounded rounded-xl py-2" style="background-image: url({{ asset('image/' . $data->image) }}); height: 450px; width: 250px; d-flex justify-content-center; width: 100%;"></div>
-
-                        <!-- Information -->
-                        <div class="row mt-2">
-                            <h6 class="col-6 d-flex justify-content-start align-items-center">{{ $data->nama }}</h6>
-                            <div class="col-6 d-flex justify-content-center align-items-center">
-                                <input id="pilihan{{ $data->id }}" type="checkbox" class="hidden" name="category[]"
-                                    value="{{ $data->id }}">
-                                <button id="vote{{$data->id}}" type="button" class="btn btn-success"
-                                    onclick="vote({{ $data->id }}); checkSelected();">Vote</button>
-                                <button id="unVote{{$data->id}}" type="button" class="btn btn-danger hidden"
-                                    onclick="unVote({{ $data->id }}); checkSelected();">Batalkan Vote</button>
-                            </div>
-                        </div>
-                        
-
-                        <div class="container border-radius-lg">
-                            <div class="row">
-                                <div class="col-6 py-3 ps-0">
-                                    <h4 class="font-weight-bolder">Visi</h4>
-                                </div>
-                                <div class="col-6 py-3 ps-0">
-                                    <h4 class="font-weight-bolder">Misi</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Instruction Text -->
+            <div class="text-start mt-3 mx-4">
+                <p class="text-muted font-weight-bold">
+                    {{ __('Pilih maksimal CRUD kandidat') }}
+                </p>
             </div>
-            @endforeach
+            <!-- Card Section -->
+            <div class="row mt-4">
+                <!-- Your card content for the candidate cards goes here -->
+            </div>
         </div>
-    </form>
-</section>
+
+        @foreach($datas as $data)
+        <!-- Card 1 -->
+        <div class="col-lg-3 mx-4 col-md-6 col-sm-6 col-12">
+            <div class="card z-index-2 max-height-600">
+                <div class="card-body p-3">
+                    <!-- Foto -->
+                    <div class="rounded rounded-xl py-2" style="background-image: url({{ asset('image/' . $data->image) }}); height: 450px; background-size: cover; width: 100%;"></div>
+
+                    <!-- Information -->
+                    <div class="row mt-2">
+                        <h6 class="col-12 text-center">{{ $data->nama }}</h6>
+                    </div>
+
+                    <!-- Vote & Visi Misi Buttons -->
+                    <div class="d-flex flex-column align-items-center mt-3">
+                        <div class="d-flex justify-content-center mb-2 w-100">
+                            <input id="pilihan{{ $data->id }}" type="checkbox" class="hidden" name="category[]"
+                                value="{{ $data->id }}">
+                        </div>
+                        <div class="d-flex justify-content-center mb-2 w-100">
+                            <button id="vote{{$data->id}}" type="button" class="btn btn-success"
+                                onclick="vote({{ $data->id }}); checkSelected();">Vote</button>
+                        </div>
+                        <div class="d-flex justify-content-center mb-2 w-100">
+                            <button id="unVote{{$data->id}}" type="button" class="btn btn-danger hidden"
+                                onclick="unVote({{ $data->id }}); checkSelected();">Batalkan Vote</button>
+                        </div>
+                        <!-- Visi & Misi Button -->
+                        <div class="d-flex justify-content-center mt-3 w-100">
+                            <button id="visiMisi{{$data->id}}" type="button" class="btn btn-dark"
+                                onclick="showVisiMisi({{ $data->id }});">Visi & Misi</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        @endforeach
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('js')
