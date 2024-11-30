@@ -12,7 +12,7 @@
                             <h5 class="mb-0">Candidates Data</h5>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#import">Import</button>
+                            <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#import">Import</button>
                             <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#add">Add</button>
                         </div>
                     </div>

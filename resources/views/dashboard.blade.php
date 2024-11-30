@@ -98,6 +98,10 @@
                 <div class="card-body">
                     <h6 class="mb-3">Total Vote Chart {{ $data->name }}</h6>
                     <canvas id="pieChart{{ $index+1 }}" height="200"></canvas>
+                    <!-- Export Data Table Button -->
+                    <div class="d-flex justify-content-center mt-3">
+                        <button type="button" class="btn btn-dark btn-sm" onclick="exportTableData('pieChart{{ $index+1 }}')">Export as Table</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -324,6 +328,41 @@
             });
         });
     });
+</script>
+
+<script>
+    // Function to extract chart data and export as a table (CSV)
+    function exportTableData(chartId) {
+        const chart = Chart.getChart(chartId);
+        const labels = chart.data.labels;
+        const data = chart.data.datasets[0].data;
+        
+        // Create table header
+        let table = '<table border="1"><thead><tr><th>Label</th><th>Value</th></tr></thead><tbody>';
+        
+        // Add rows from chart data
+        for (let i = 0; i < labels.length; i++) {
+            table += `<tr><td>${labels[i]}</td><td>${data[i]}</td></tr>`;
+        }
+
+        // Close table tag
+        table += '</tbody></table>';
+        
+        // Call function to export the table as CSV
+        exportToCSV(table, chartId);
+    }
+
+    // Function to export HTML table to CSV
+    function exportToCSV(table, chartId) {
+        // Create a blob from the table HTML
+        const blob = new Blob([table], { type: 'text/csv' });
+        
+        // Create a link element to trigger the download
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `${chartId}-data.csv`;  // Filename for CSV
+        link.click();
+    }
 </script>
 
 @endsection

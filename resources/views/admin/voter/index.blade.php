@@ -9,8 +9,8 @@
             <div class="card-header pb-0 d-flex justify-content-between align-items-center">
               <h6>Voters Data</h6>
               <div>
-                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#import">Import</button>
-                <a href="{{ route('voters.export') }}" class="btn btn-sm btn-success">Export</a>
+                <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#import">Import</button>
+                <a href="{{ route('voters.export') }}" class="btn btn-sm btn-danger">Export</a>
                 <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#add">Add</button>
               </div>
             </div>
