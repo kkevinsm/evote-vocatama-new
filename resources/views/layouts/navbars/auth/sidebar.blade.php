@@ -105,7 +105,11 @@
             <span class="nav-link-text ms-1">Admin Profile</span>
         </a>
       </li>
-
     </ul>
   </div>
+    <div class="d-flex d-md-none justify-content-center mt-3">
+      <a href="{{ url('/logout') }}" class="nav-link text-body font-weight-bold px-0 w-100 text-center">
+          <i class="fa fa-user me-2"></i> Sign Out
+      </a>
+    </div>
 </aside>
