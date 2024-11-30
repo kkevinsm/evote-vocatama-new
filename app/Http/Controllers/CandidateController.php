@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Imports\CanditateImport;
-use App\Models\Canditate;
+use App\Imports\CandidateImport;
+use App\Models\Candidate;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -11,9 +11,9 @@ class CandidateController extends Controller
 {
     public function index()
     {
-        $datas = Canditate::all();
+        $datas = Candidate::all();
 
-        return view('admin.canditate.index', compact([
+        return view('admin.candidate.index', compact([
             'datas',
         ]));
     }
@@ -32,7 +32,7 @@ class CandidateController extends Controller
             // $input['image'] = "$profileImage";
         }
     
-        Canditate::create([
+        Candidate::create([
             'nama' => $request->nama,
             'role' => $request->role,
             'visi' => $request->visi,
@@ -40,12 +40,12 @@ class CandidateController extends Controller
             'image' => $profileImage,
         ]);
 
-        return redirect()->route('canditate.index')->with('status', 'Data berhasil ditambahkan!');
+        return redirect()->route('candidate.index')->with('status', 'Data berhasil ditambahkan!');
     }
 
     public function update(Request $request, $id)
     {
-        Canditate::where('id', $id)->update([
+        Candidate::where('id', $id)->update([
             'nama' => $request->nama,
             'asal' => $request->asal,
             'visi' => $request->visi,
@@ -57,7 +57,7 @@ class CandidateController extends Controller
 
     public function destroy($id)
     {
-        Canditate::where('id', $id)->delete();
+        Candidate::where('id', $id)->delete();
 
         return $id;
 
@@ -66,16 +66,16 @@ class CandidateController extends Controller
 
     public function detail($id)
     {
-        $data = Canditate::where('id', $id)->first();
+        $data = Candidate::where('id', $id)->first();
 
-        return view('admin.canditate.detail', compact(
+        return view('admin.candidate.detail', compact(
             'data'
         ));
     }
 
     public function import(Request $request)
     {
-        Excel::import(new CanditateImport,request()->file('file'));
+        Excel::import(new CandidateImport,request()->file('file'));
 
         return redirect()->back()->with('status', 'Data berhasil diimport!');
     }

@@ -57,7 +57,7 @@
                                     </td>
                                     <td class="text-center">
                                         <!-- Button Detail -->
-                                        <a href="#" class="btn btn-info btn-sm mx-3" data-bs-toggle="tooltip" data-bs-original-title="Detail user">
+                                        <a href="{{ route('voters.detail', $candidates->id) }}" class="btn btn-info btn-sm mx-3" data-bs-toggle="tooltip" data-bs-original-title="Detail Candidate">
                                             Detail
                                         </a>
                                         <!-- Button Delete -->
@@ -78,35 +78,48 @@
 <!-- Modal Add -->
 <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addModalLabel">Add New Voter</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form action="{{ route('voters.create') }}" method="POST">
-            @csrf
-            <div class="form-group">
-              <label for="name" class="col-form-label">Name:</label>
-              <input type="text" class="form-control" id="name" name="name" required>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addModalLabel">Add New Candidate</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="form-group">
-              <label for="username" class="col-form-label">Username:</label>
-              <input type="text" class="form-control" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-              <label for="password" class="col-form-label">Password:</label>
-              <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-          </form>
+            <form action="{{ route('voters.create') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="visi" class="col-form-label">Visi:</label>
+                        <textarea class="form-control" id="visi" name="visi" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="misi" class="col-form-label">Misi:</label>
+                        <textarea class="form-control" id="misi" name="misi" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="photo" class="col-form-label">Photo:</label>
+                        <input type="file" class="form-control" id="photo" name="photo" accept="image/*" required>
+                        <small class="text-muted">Accepted formats: JPG, PNG (Max size: 2MB)</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="role" class="col-form-label">Role:</label>
+                        <select class="form-control" id="role" name="role" required>
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn bg-gradient-primary">Save</button>
+                </div>
+            </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn bg-gradient-primary">Save</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 
   <!-- Modal Import -->
 <div class="modal fade" id="import" tabindex="-1" role="dialog" aria-labelledby="importModalLabel" aria-hidden="true">

@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\UsersImport;
 use App\Imports\PemilihsImport;
-use App\Models\Canditate;
+use App\Models\Candidate;
 use App\Models\Log;
 use App\Models\Pemilih;
 use App\Models\Role;
@@ -104,7 +104,7 @@ class AdminController extends Controller
     {
         $datas = Role::all();
         $logs = Log::all();
-        $candidates = Canditate::all();
+        $candidates = Candidate::all();
         $voters = User::where('role_id', 2)->get();
         $voted = User::where('status', 2)->get();
         $unvoted = User::where('status', 1)->get();
