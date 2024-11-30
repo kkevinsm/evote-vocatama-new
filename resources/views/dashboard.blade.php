@@ -286,7 +286,7 @@
             const labels = roleCandidates.map(candidate => candidate.name);
             const dataHaha = roleCandidates.map(candidate => {
                 // Hitung jumlah log untuk kandidat ini
-                return logs.filter(log => log.canditate_id === candidate.id).length;
+                return logs.filter(log => log.candidate_id === candidate.id).length;
             });
 
             // Setup warna untuk chart

@@ -2,10 +2,10 @@
 
 namespace App\Imports;
 
-use App\Models\Canditate;
+use App\Models\Candidate;
 use Maatwebsite\Excel\Concerns\ToModel;
 
-class CanditateImport implements ToModel
+class CandidateImport implements ToModel
 {
     /**
     * @param array $row
@@ -14,7 +14,7 @@ class CanditateImport implements ToModel
     */
     public function model(array $row)
     {
-        return new Canditate([
+        return new Candidate([
             'name' => $row[0],
             'role' => $row[1],
             'visi' => $row[2],

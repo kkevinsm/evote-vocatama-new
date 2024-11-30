@@ -11,6 +11,6 @@ class Log extends Model
 
     protected $fillable = [
         'user_id',
-        'canditate_id',
+        'candidate_id',
     ];
 }

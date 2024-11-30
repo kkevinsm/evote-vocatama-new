@@ -2,19 +2,19 @@
 
 namespace Database\Seeders;
 
-use App\Models\Canditate;
+use App\Models\Candidate;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CanditateSeeder extends Seeder
+class CandidateSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Canditate::truncate();
-        $canditates = [
+        Candidate::truncate();
+        $candidates = [
             [
                 'name' => 'IshlahYt',
                 'role' => 'ipm',
@@ -38,13 +38,13 @@ class CanditateSeeder extends Seeder
             ],
         ];
 
-        foreach ($canditates as $canditate) {
-            Canditate::create([
-                'name' => $canditate['name'],
-                'role' => $canditate['role'],
-                'visi' => $canditate['visi'],
-                'misi' => $canditate['misi'],
-                'image' => $canditate['image'],
+        foreach ($candidates as $candidate) {
+            Candidate::create([
+                'name' => $candidate['name'],
+                'role' => $candidate['role'],
+                'visi' => $candidate['visi'],
+                'misi' => $candidate['misi'],
+                'image' => $candidate['image'],
             ]);
         }
     }
