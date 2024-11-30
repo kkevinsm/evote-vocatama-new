@@ -83,10 +83,6 @@
             <label for="username" class="col-form-label">Username:</label>
             <input type="text" class="form-control" id="username" name="username" required>
           </div>
-          <div class="form-group">
-            <label for="password" class="col-form-label">Password:</label>
-            <input type="password" class="form-control" id="password" name="password" required>
-          </div>
         </form>
       </div>
       <div class="modal-footer">
