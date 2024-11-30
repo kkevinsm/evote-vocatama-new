@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Canditate;
+use App\Models\Candidate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Formatur;
@@ -16,7 +16,7 @@ class GuestController extends Controller
 
     public function ipm()
     {
-        $datas = Canditate::where('role', 'ipm')->get();
+        $datas = Candidate::where('role', 'ipm')->get();
         return view('guest.ipm', compact([
             'datas'
         ]));
@@ -24,7 +24,7 @@ class GuestController extends Controller
 
     public function hw()
     {
-        $datas = Canditate::where('role', 'hw')->get();
+        $datas = Candidate::where('role', 'hw')->get();
         return view('guest.hw', compact([
             'datas'
         ]));
@@ -32,7 +32,7 @@ class GuestController extends Controller
 
     public function ts()
     {
-        $datas = Canditate::where('role', 'ts')->get();
+        $datas = Candidate::where('role', 'ts')->get();
         return view('guest.ts', compact([
             'datas'
         ]));
@@ -43,7 +43,7 @@ class GuestController extends Controller
         foreach ($request->category as $value){
             Log::create([
                 'user_id' => Auth::user()->id,
-                'canditate_id' => $value,
+                'candidate_id' => $value,
             ]);
         }        
 
@@ -55,7 +55,7 @@ class GuestController extends Controller
         foreach ($request->category as $value){
             Log::create([
                 'user_id' => Auth::user()->id,
-                'canditate_id' => $value,
+                'candidate_id' => $value,
             ]);
         }
 
@@ -67,7 +67,7 @@ class GuestController extends Controller
         foreach ($request->category as $value){
             Log::create([
                 'user_id' => Auth::user()->id,
-                'canditate_id' => $value,
+                'candidate_id' => $value,
             ]);
         }
 
