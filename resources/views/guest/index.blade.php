@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')
-    <div class=" min-vh-80">
+    <div class=" min-vh-85">
         <div class="container-fluid" >
             <div class="card card-body blur shadow-blur">
                 <div class="row gx-4 align-items-center text-center text-md-start"> <!-- Tambahkan responsif -->
