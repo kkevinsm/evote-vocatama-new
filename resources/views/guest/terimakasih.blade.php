@@ -32,16 +32,7 @@
                         </form>
                     </div>
                 </div>
-            </div>
-            <!-- Instruction Text -->
-            <div class="text-start mt-3 mx-4">
-                <p class="text-muted font-weight-bold">
-                    {{ __('Pilih maksimal CRUD kandidat') }}
-                </p>
-            </div>
-            <!-- Card Section -->
-            <div class="row mt-4">
-                <!-- Your card content for the candidate cards goes here -->
+              </div>
             </div>
         </div>
     </div>
