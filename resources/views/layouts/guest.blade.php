@@ -25,6 +25,7 @@
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg overflow-hidden">
       <div class="container-fluid py-4">
           @yield('content')
+          @include('layouts.footers.guest.footer')
       </div>
   </main>
 

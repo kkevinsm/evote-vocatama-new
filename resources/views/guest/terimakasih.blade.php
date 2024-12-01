@@ -1,84 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <link rel="shortcut icon" href="public/assets/img/favicon.ico">
-  <title>Evote | Vocatama</title>
+@extends('layouts.guest')
 
-  <!-- General CSS Files -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-
-  <!-- Template CSS -->
-  <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-social.css') }}">
-
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/4566ed067d.js" crossorigin="anonymous"></script>
-
-  <!-- CSS Tambahan -->
-  @yield('head')
-</head>
-
-<body class="sidebar-mini">
-  <div id="app">
-    <div class="main-wrapper">
-      <!-- Main Content -->
-      <div class="main-content">
-            <div class="row" style="display: flex;-ms-flex-wrap: wrap;flex-wrap: nowrap;margin-right: -15px;margin-left: -15px;justify-content: center;">
-                <div class="col-12 col-md-6 col-sm-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="empty-state" data-height="400">
-                            <div class="empty-state-icon bg-success">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <h2>Terima kasih!</h2>
-                            <p class="lead">
-                                Semoga Formautur terpilih dapat melanjutkan tongkat estafet perjuangan yang lebih baik lagi!
-                            </p>
-                              <div>
-                                <a class="dropdown-item has-icon btn-danger" href="{{ route('logout') }}"  style="color:#fff"
-                                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                                  <i class="fas fa-sign-out-alt"></i>Logout
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}">
-                                    <!-- <button class="btn btn-danger"><i class="fas fa-sign-out-alt"></i>Logout</button> -->
-                                </form>
-                              </div>
-                            </div>
+@section('content')
+    <div class=" min-vh-85">
+        <div class="container-fluid" >
+            <div class="card card-body blur shadow-blur">
+                <div class="row gx-4 align-items-center text-center text-md-start"> <!-- Tambahkan responsif -->
+                    <!-- Foto -->
+                    <div class="col-12 col-md-auto">
+                        <div class="avatar avatar-xl mx-auto mx-md-0 position-relative">
+                            <img src="{{ asset('assets/img/bruce-mars.jpg') }}" alt="CRUD" class="w-100 border-radius-lg shadow-sm">
                         </div>
+                    </div>
+                    <!-- Heading dan Paragraf -->
+                    <div class="col-12 col-md-auto my-auto">
+                        <div class="h-100">
+                            <p class="mb-0 font-weight-bold text-sm">
+                                PILIH CALON FORMATUR
+                            </p>
+                            <h5 class="mb-1">
+                                CRUD ROLES (EX: IKATAN PELAJAR MUHAMMADIYAH)
+                            </h5>
+                        </div>
+                    </div>
+                    <!-- Tombol Submit -->
+                    <div class="col-12 col-md-auto ms-auto d-flex justify-content-md-end justify-content-center">
+                        <form action="/guest/terimakasih" method="POST">
+                            @csrf
+                            <button type="submit" class="btn bg-gradient-info font-weight-bold" style="margin-bottom: -1px">
+                                Submit
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
-      </div>
-      <footer class="main-footer">
-        <div class="footer-left">
-          Copyright &copy; 2023 <div class="bullet"></div> Design By <a href="#">Hangker Sepanjang</a>
+            <!-- Instruction Text -->
+            <div class="text-start mt-3 mx-4">
+                <p class="text-muted font-weight-bold">
+                    {{ __('Pilih maksimal CRUD kandidat') }}
+                </p>
+            </div>
+            <!-- Card Section -->
+            <div class="row mt-4">
+                <!-- Your card content for the candidate cards goes here -->
+            </div>
         </div>
-        <div class="footer-right">
-        </div>
-      </footer>
     </div>
-  </div>
-  
-  <!-- General JS Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script src="{{ asset('assets/js/stisla.js') }}"></script>
-
-
-  <!-- Template JS File -->
-  <script src="{{ asset('assets/js/scripts.js') }}"></script>
-  <!-- <script src="{{ asset('assets/js/custom2.js') }}"></script> -->
-
-  <!-- JS Tambahan -->
-  @yield('js')
-</body>
-</html>
+</div>
+@endsection
