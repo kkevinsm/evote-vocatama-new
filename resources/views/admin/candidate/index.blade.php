@@ -135,20 +135,20 @@
           <h5 class="modal-title" id="importModalLabel">Import Voters</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          <form action="{{ route('voters.import') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('candidate.import') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="form-group">
-              <label for="file" class="col-form-label">Upload File:</label>
-              <input type="file" class="form-control" id="file" name="file" accept=".csv, .xlsx" required>
-              <small class="text-muted">Supported formats: CSV, XLSX</small>
+            <div class="modal-body">  
+                <div class="form-group">
+                <label for="file" class="col-form-label">Upload File:</label>
+                <input type="file" class="form-control" id="file" name="file" accept=".csv, .xlsx" required>
+                <small class="text-muted">Supported formats: CSV, XLSX</small>
+                </div>
             </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn bg-gradient-primary">Upload</button>
-        </div>
+            <div class="modal-footer">
+            <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn bg-gradient-primary">Upload</button>
+            </div>
+        </form>
       </div>
     </div>
   </div>  

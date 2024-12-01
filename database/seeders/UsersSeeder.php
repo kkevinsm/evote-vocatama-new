@@ -24,13 +24,13 @@ class UsersSeeder extends Seeder
                 'role_id' => '1',
                 'status' => '1',
             ],
-            [
-                'name' => 'User',
-                'username' => 'user',
-                'password' => 'password',
-                'role_id' => '2',
-                'status' => '1',
-            ],
+            // [
+            //     'name' => 'User',
+            //     'username' => 'user',
+            //     'password' => 'password',
+            //     'role_id' => '2',
+            //     'status' => '1',
+            // ],
         ];
 
         foreach($users as $user)

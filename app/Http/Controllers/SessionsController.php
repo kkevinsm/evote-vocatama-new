@@ -20,21 +20,18 @@ class SessionsController extends Controller
             'password'=>'required' 
         ]);
 
-        if(Auth::attempt($attributes))
-        {
-            
+        $user = \App\Models\User::where('username', $attributes['username'])->first();
+        if ($user && $user->password === $attributes['password']) {
+            Auth::login($user);
             session()->regenerate();
-            $auth = Auth::user();
-
-            if($auth->role_id == 1){
-                return redirect('dashboard')->with(['success'=>'You are logged in.']);
+            
+            if ($user->role_id == 1) {
+                return redirect('dashboard')->with(['success' => 'You are logged in.']);
             } else {
-                return redirect()->route('guest.index')->with(['success'=>'You are logged in.']);
+                return redirect()->route('guest.index')->with(['success' => 'You are logged in.']);
             }
-        }
-        else{
-
-            return back()->withErrors(['danger'=>'Username or password invalid.']);
+        } else {
+            return back()->withErrors(['danger' => 'Username or password invalid.']);
         }
     }
     

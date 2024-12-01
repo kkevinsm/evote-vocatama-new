@@ -48,11 +48,24 @@ class CandidateController extends Controller
 
     public function update(Request $request, $id)
     {
+        // return $request;
+        $request->validate([
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+  
+        if ($image = $request->file('photo')) {
+            $destinationPath = 'image/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            // $input['image'] = "$profileImage";
+        }
+
         Candidate::where('id', $id)->update([
             'name' => $request->name,
             'role' => $request->role,
             'visi' => $request->visi,
             'misi' => $request->misi,
+            'image' => $profileImage,
         ]);
 
         return redirect()->back()->with('status', 'Data berhasil diperbarui');
