@@ -1,5 +1,4 @@
-<!-- @extends('layouts.dashboard') -->
-@extends('layouts.user_type.auth')
+@extends('layouts.guest')
 
 @section('head')
 <style>
@@ -11,8 +10,8 @@
 @endsection
 
 @section('content')
-    <div>
-        <div class="container-fluid">
+    <div class=" min-vh-80">
+        <div class="container-fluid" >
             <div class="card card-body blur shadow-blur">
                 <div class="row gx-4 align-items-center text-center text-md-start"> <!-- Tambahkan responsif -->
                     <!-- Foto -->
@@ -36,7 +35,7 @@
                     <div class="col-12 col-md-auto ms-auto d-flex justify-content-md-end justify-content-center">
                         <form action="/guest/terimakasih" method="POST">
                             @csrf
-                            <button type="submit" class="btn bg-gradient-primary font-weight-bold px-3">
+                            <button type="submit" class="btn bg-gradient-info font-weight-bold" style="margin-bottom: -1px">
                                 Submit
                             </button>
                         </form>
@@ -55,11 +54,11 @@
             </div>
         </div>
 
-        @foreach($datas as $data)
         <!-- Card 1 -->
         <div class="container-fluid">
             <div class="row">
                 <!-- Card -->
+                @foreach($datas as $data)
                 <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
                     <div class="card z-index-2 max-height-600">
                         <div class="card-body p-4">
@@ -71,7 +70,7 @@
         
                             <!-- Information -->
                             <div class="row mt-2">
-                                <h6 class="col-12 text-center">{{ $data->nama }}</h6>
+                                <h6 class="col-12 text-center">{{ $data->name }}</h6>
                             </div>
         
                             <!-- Vote & Visi Misi Buttons -->
@@ -81,9 +80,9 @@
                                         <div class="d-flex gap-2">
                                             <!-- Buttons -->
                                             <input id="pilihan{{ $data->id }}" type="checkbox" class="hidden" name="category[]" value="{{ $data->id }}">
-                                            <button id="vote{{$data->id}}" type="button" class="btn btn-success" onclick="vote({{ $data->id }}); checkSelected();">Vote</button>
-                                            <button id="unVote{{$data->id}}" type="button" class="btn btn-danger hidden" onclick="unVote({{ $data->id }}); checkSelected();">Unvote</button>
-                                            <button id="visiMisi{{$data->id}}" type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modal-visi-misi" onclick="showVisiMisi({{ $data->id }});">Visi & Misi</button>
+                                            <button id="vote{{$data->id}}" type="button" class="btn bg-gradient-success" onclick="vote({{ $data->id }}); checkSelected();">Vote</button>
+                                            <button id="unVote{{$data->id}}" type="button" class="btn bg-gradient-danger hidden" onclick="unVote({{ $data->id }}); checkSelected();">Unvote</button>
+                                            <button id="visiMisi{{$data->id}}" type="button" class="btn bg-gradient-dark" data-bs-toggle="modal" data-bs-target="#modal-visi-misi" onclick="showVisiMisi({{ $data->id }});">Visi & Misi</button>
                                         </div>
                                     </div>
                                 </div>
@@ -91,13 +90,8 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
-        </div>
-        
-    </div>
-</div>
-
-        @endforeach
         </div>
     </div>
 </div>

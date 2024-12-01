@@ -129,7 +129,7 @@ Route::post('/guest/pilih/ts', [GuestController::class, 'pilihts'])->name('guest
 Route::get('/guest', [GuestController::class, 'index'])->name('guest.index');
 // Guest Terimakasih 
 Route::get('/guest/terimakasih', function() {
-	return view('guest.index');
+	return view('guest.terimakasih');
 })->name('terimakasih');
 
 // Hangker Profile
