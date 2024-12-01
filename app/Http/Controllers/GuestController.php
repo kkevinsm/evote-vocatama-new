@@ -35,6 +35,30 @@ class GuestController extends Controller
         ]));
     }
 
+    public function store(Request $request)
+    {
+        $count = count(Role::all());
+        $array = $request->selectedValues[$count];
+
+        if (is_string($array)) {
+            $array = json_decode($array, true); 
+        }
+
+        if (is_array($array)) {
+            foreach ($array as $value) {
+                Log::create([
+                    'user_id' => Auth::user()->id,
+                    'candidate_id' => $value,
+                ]);
+            }
+
+            return redirect()->route('terimakasih')->with('status', 'Terimakasih telah memilih!');
+        }
+
+        return redirect()->back()->withErrors(['error' => 'Data tidak valid!']);
+    }
+
+
     public function ipm()
     {
         $datas = Candidate::where('role', 'ipm')->get();
