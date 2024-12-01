@@ -10,16 +10,18 @@
 @endsection
 
 @section('content')
-<div>
-        <div class="container-fluid">
+    <div class=" min-vh-80">
+        <div class="container-fluid" >
             <div class="card card-body blur shadow-blur">
-                <div class="row gx-4">
-                    <div class="col-auto">
-                        <div class="avatar avatar-xl position-relative">
+                <div class="row gx-4 align-items-center text-center text-md-start"> <!-- Tambahkan responsif -->
+                    <!-- Foto -->
+                    <div class="col-12 col-md-auto">
+                        <div class="avatar avatar-xl mx-auto mx-md-0 position-relative">
                             <img src="{{ asset('assets/img/bruce-mars.jpg') }}" alt="CRUD" class="w-100 border-radius-lg shadow-sm">
                         </div>
                     </div>
-                    <div class="col-auto my-auto">
+                    <!-- Heading dan Paragraf -->
+                    <div class="col-12 col-md-auto my-auto">
                         <div class="h-100">
                             <p class="mb-0 font-weight-bold text-sm">
                                 PILIH CALON FORMATUR
@@ -29,11 +31,13 @@
                             </h5>
                         </div>
                     </div>
-                    <!-- Submit Button Section in the Same Row -->
-                    <div class="col-auto my-auto d-flex justify-content-end align-items-center">
-                        <form action="/submit-path" method="POST">
+                    <!-- Tombol Submit -->
+                    <div class="col-12 col-md-auto ms-auto d-flex justify-content-md-end justify-content-center">
+                        <form action="/guest/terimakasih" method="POST">
                             @csrf
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn bg-gradient-primary font-weight-bold" style="margin-bottom: -1px">
+                                Submit
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -52,40 +56,43 @@
 
         @foreach($datas as $data)
         <!-- Card 1 -->
-        <div class="col-lg-3 mx-4 col-md-6 col-sm-6 col-12">
-            <div class="card z-index-2 max-height-600">
-                <div class="card-body p-3">
-                    <!-- Foto -->
-                    <div class="rounded rounded-xl py-2" style="background-image: url({{ asset('image/' . $data->image) }}); height: 450px; background-size: cover; width: 100%;"></div>
-
-                    <!-- Information -->
-                    <div class="row mt-2">
-                        <h6 class="col-12 text-center">{{ $data->nama }}</h6>
-                    </div>
-
-                    <!-- Vote & Visi Misi Buttons -->
-                    <div class="d-flex flex-column align-items-center mt-3">
-                        <div class="d-flex justify-content-center mb-2 w-100">
-                            <input id="pilihan{{ $data->id }}" type="checkbox" class="hidden" name="category[]"
-                                value="{{ $data->id }}">
-                        </div>
-                        <div class="d-flex justify-content-center mb-2 w-100">
-                            <button id="vote{{$data->id}}" type="button" class="btn btn-success"
-                                onclick="vote({{ $data->id }}); checkSelected();">Vote</button>
-                        </div>
-                        <div class="d-flex justify-content-center mb-2 w-100">
-                            <button id="unVote{{$data->id}}" type="button" class="btn btn-danger hidden"
-                                onclick="unVote({{ $data->id }}); checkSelected();">Batalkan Vote</button>
-                        </div>
-                        <!-- Visi & Misi Button -->
-                        <div class="d-flex justify-content-center mt-3 w-100">
-                            <button id="visiMisi{{$data->id}}" type="button" class="btn btn-dark"
-                                onclick="showVisiMisi({{ $data->id }});">Visi & Misi</button>
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Card -->
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="card z-index-2 max-height-600">
+                        <div class="card-body p-4">
+                            <!-- Foto -->
+                            <div class="border-radius-lg py-2 shadow-sm" 
+                                 style="background-image: url({{ asset('assets/img/bruce-mars.jpg') }});
+                                        height: 250px; background-size: cover; width: 100%;">
+                            </div>
+        
+                            <!-- Information -->
+                            <div class="row mt-2">
+                                <h6 class="col-12 text-center">{{ $data->nama }}</h6>
+                            </div>
+        
+                            <!-- Vote & Visi Misi Buttons -->
+                            <div class="row">
+                                <div class="d-flex flex-column align-items-center mt-3">
+                                    <div class="d-flex justify-content-center w-100">
+                                        <div class="d-flex gap-2">
+                                            <!-- Buttons -->
+                                            <input id="pilihan{{ $data->id }}" type="checkbox" class="hidden" name="category[]" value="{{ $data->id }}">
+                                            <button id="vote{{$data->id}}" type="button" class="btn bg-gradient-success" onclick="vote({{ $data->id }}); checkSelected();">Vote</button>
+                                            <button id="unVote{{$data->id}}" type="button" class="btn bg-gradient-danger hidden" onclick="unVote({{ $data->id }}); checkSelected();">Unvote</button>
+                                            <button id="visiMisi{{$data->id}}" type="button" class="btn bg-gradient-dark" data-bs-toggle="modal" data-bs-target="#modal-visi-misi" onclick="showVisiMisi({{ $data->id }});">Visi & Misi</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                    
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
     </div>
 </div>
 
@@ -93,9 +100,44 @@
         </div>
     </div>
 </div>
+
+{{-- !-- Modal Visi Misi --}}
+
+<div class="modal fade" id="modal-visi-misi" tabindex="-1" role="dialog" aria-labelledby="modal-visi-misi-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-" role="document">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h6 class="modal-title font-weight-bold text-dark" id="modal-visi-misi-title">Visi & Misi Kandidat</h6>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            </div>
+            <!-- Modal Body -->
+            <div class="modal-body">
+            <h6 class="font-weight-bold text-dark">Visi:</h6>
+            <p>
+                Mewujudkan komunitas yang berdaya saing global dengan semangat keislaman, integritas, dan inovasi.
+            </p>
+            <h6 class="font-weight-bold text-dark mt-4">Misi:</h6>
+            <ul>
+                <li>Memperkuat peran pelajar Muhammadiyah sebagai agen perubahan sosial.</li>
+                <li>Menanamkan nilai-nilai keislaman dalam setiap kegiatan organisasi.</li>
+                <li>Memfasilitasi pelajar untuk mengembangkan potensi akademik dan non-akademik.</li>
+                <li>Menjalin kolaborasi strategis dengan berbagai pihak untuk mendukung kemajuan bersama.</li>
+            </ul>
+            </div>
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+            <button type="button" class="btn bg-gradient-danger btn-link ml-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('js')
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
 <script>
     function vote(id) {
@@ -147,4 +189,5 @@
         });
     }
 </script>
+
 @endsection
