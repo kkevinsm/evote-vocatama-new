@@ -127,6 +127,7 @@ Route::post('/guest/pilih/ts', [GuestController::class, 'pilihts'])->name('guest
 
 // Guest Index
 Route::get('/guest', [GuestController::class, 'index'])->name('guest.index');
+Route::post('/guest/store', [GuestController::class, 'store'])->name('guest.store');
 // Guest Terimakasih 
 Route::get('/guest/terimakasih', function() {
 	return view('guest.terimakasih');

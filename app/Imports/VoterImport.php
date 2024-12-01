@@ -37,7 +37,7 @@ class VoterImport implements ToModel
             'name' => $row[0],
             'role_id' => 2,
             'username' => $username,
-            'password' => Hash::make($password),
+            'password' => $password,
             'status' => 1,
         ]);
 
