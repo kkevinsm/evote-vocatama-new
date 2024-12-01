@@ -39,28 +39,33 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($datas as $index => $data)
-                                <tr>
-                                    <td class="ps-4">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $index+1 }}</p>
-                                    </td>
-                                    <td class="text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $data->name }}</p>
-                                    </td>
-                                    <td class="text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $data->max_vote }}</p>
-                                    </td>
-                                    <td class="text-center">
-                                        <button href="#" class="btn btn-info btn-sm mx-3" data-bs-toggle="modal" data-bs-target="#edit">
-                                            Edit
-                                        </button>
-                                        <button class="btn btn-danger btn-sm mx-3" data-bs-toggle="tooltip" data-bs-original-title="Delete">
+                            @foreach($datas as $index => $data)
+                            <tr>
+                                <td class="ps-4">
+                                    <p class="text-xs font-weight-bold mb-0">{{ $index + 1 }}</p>
+                                </td>
+                                <td class="text-center">
+                                    <p class="text-xs font-weight-bold mb-0">{{ $data->name }}</p>
+                                </td>
+                                <td class="text-center">
+                                    <p class="text-xs font-weight-bold mb-0">{{ $data->max_vote }}</p>
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-info btn-sm mx-3" data-bs-toggle="modal" data-bs-target="#edit" data-id="{{ $data->id }}" data-name="{{ $data->name }}" data-max-vote="{{ $data->max_vote }}">
+                                        Edit
+                                    </button>
+                                    <form action="{{ route('role.destroy', $data->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Are you sure you want to delete this candidate?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm mx-3" data-bs-toggle="tooltip" data-bs-original-title="Delete Candidate">
                                             Delete
                                         </button>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+
                         </table>
                     </div>
                 </div>
@@ -71,34 +76,36 @@
 
 <!-- Modal Tambah -->
 <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Add Role</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title" id="exampleModalLabel">Add Role</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
-              </button>
+                </button>
             </div>
-            <div class="modal-body">
-              <form>
-                <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">Description Role</label>
-                  <input type="text" class="form-control" value="Hangker Sepanjang" id="description-role">
+            <form action="{{ route('role.store') }}" method="POST">
+            @csrf
+                <input type="hidden" name="id" id="edit-id">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Description Role</label>
+                        <input type="text" class="form-control" id="description-role" name="name" placeholder="Input role name...">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Max vote</label>
+                        <input type="number" class="form-control"  id="max-vote" min="0" name="max_vote">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Max vote</label>
-                    <input type="number" class="form-control" value="0" id="max-vote" min="0">
-                 </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn bg-gradient-success">Add</button>
-            </div>
-          </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn bg-gradient-success">Add</button>
+                </div>
+            </form>
         </div>
-      </div>
     </div>
+    </div>
+</div>
 <!-- Modal  -->
 
 <!-- Modal Edit -->
@@ -111,27 +118,44 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form>
+            
+            <form action="{{ route('role.update') }}" method="POST" id="edit-form">
+            @csrf
+            @method('PUT')
+                <input type="hidden" class="form-control" id="id" name="id">
+                <div class="modal-body">
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Description Role</label>
-                        <input type="text" class="form-control" value="Hangker Sepanjang" id="description-role">
+                        <input type="text" class="form-control" id="description-role">
                     </div>
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Max vote</label>
-                        <input type="number" class="form-control" value="0" id="max-vote" min="0">
+                        <input type="number" class="form-control" id="max-vote" min="0">
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn bg-gradient-success">Edit</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn bg-gradient-success">Edit</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
 <!-- Modal  -->
 
-    
+<script>
+    // Saat tombol edit diklik
+    document.querySelectorAll('button[data-bs-target="#edit"]').forEach(button => {
+        button.addEventListener('click', function () {
+            const id = this.getAttribute('data-id');
+            const name = this.getAttribute('data-name');
+            const maxVote = this.getAttribute('data-max-vote');
+
+            // Isi nilai input di modal edit
+            document.querySelector('#edit #description-role').value = name;
+            document.querySelector('#edit #max-vote').value = maxVote;
+        });
+    });
+</script>
 @endsection

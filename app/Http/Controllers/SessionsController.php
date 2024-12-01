@@ -22,8 +22,15 @@ class SessionsController extends Controller
 
         if(Auth::attempt($attributes))
         {
+            
             session()->regenerate();
-            return redirect('dashboard')->with(['success'=>'You are logged in.']);
+            $auth = Auth::user();
+
+            if($auth->role_id == 1){
+                return redirect('dashboard')->with(['success'=>'You are logged in.']);
+            } else {
+                return redirect()->route('guest.index')->with(['success'=>'You are logged in.']);
+            }
         }
         else{
 

@@ -40,32 +40,38 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($datas as $index => $candidate)
                                 <tr>
                                     <td class="ps-4">
-                                        <p class="text-xs font-weight-bold mb-0">1</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $index+1 }}</p>
                                     </td>
                                     <td>
                                         <div>
-                                            <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3">
+                                            <img src="{{ asset('image/' . $candidate->image) }}" class="avatar avatar-sm me-3">
                                         </div>
                                     </td>
                                     <td class="text-center">
-                                        <p class="text-xs font-weight-bold mb-0">Admin</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $candidate->name }}</p>
                                     </td>
                                     <td class="text-center">
-                                        <p class="text-xs font-weight-bold mb-0">Admin</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $candidate->role }}</p>
                                     </td>
                                     <td class="text-center">
                                         <!-- Button Detail -->
-                                        <a href="{{ route('voters.detail', $candidates->id) }}" class="btn btn-info btn-sm mx-3" data-bs-toggle="tooltip" data-bs-original-title="Detail Candidate">
+                                        <a href="{{ route('candidate.detail', $candidate->id) }}" class="btn btn-info btn-sm mx-3" data-bs-toggle="tooltip" data-bs-original-title="Detail Candidate">
                                             Detail
                                         </a>
                                         <!-- Button Delete -->
-                                        <button class="btn btn-danger btn-sm mx-3" data-bs-toggle="tooltip" data-bs-original-title="Delete user">
-                                            Delete
-                                        </button>
+                                        <form action="{{ route('candidate.destroy', $candidate->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Are you sure you want to delete this candidate?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm mx-3" data-bs-toggle="tooltip" data-bs-original-title="Delete Candidate">
+                                                Delete
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -83,7 +89,7 @@
                 <h5 class="modal-title" id="addModalLabel">Add New Candidate</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('voters.create') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('candidate.create') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
@@ -107,7 +113,7 @@
                         <label for="role" class="col-form-label">Role:</label>
                         <select class="form-control" id="role" name="role" required>
                             @foreach ($roles as $role)
-                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                <option value="{{ $role->name }}">{{ $role->name }}</option>
                             @endforeach
                         </select>
                     </div>

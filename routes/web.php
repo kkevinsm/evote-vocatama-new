@@ -33,21 +33,24 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/admin/candidate/index', [CandidateController::class, 'index'])->name('candidate.index');
 	Route::get('/admin/candidate/detail/{id}', [CandidateController::class, 'detail'])->name('candidate.detail');
-	Route::post('/admin/candidate/tambah', [CandidateController::class, 'create'])->name('candidate.tambah');
-	Route::post('/admin/candidate/update/{id}', [CandidateController::class, 'update'])->name('candidate.update');
-	Route::post('/admin/candidate/hapus/{id}', [CandidateController::class, 'destroy'])->name('candidate.hapus');
-	Route::post('/formatur/import', [CandidateController::class, 'import'])->name('formatur.import');
+	Route::post('/admin/candidate/create', [CandidateController::class, 'create'])->name('candidate.create');
+	Route::put('/admin/candidate/update/{id}', [CandidateController::class, 'update'])->name('candidate.update');
+	Route::delete('/admin/candidate/destroy/{id}', [CandidateController::class, 'destroy'])->name('candidate.destroy');
+	Route::post('/candidate/import', [CandidateController::class, 'import'])->name('candidate.import');
 
 	Route::get('/admin/voters/index', [VoterController::class, 'index'])->name('voters.index');
 	Route::get('/admin/voters/detail/{id}', [VoterController::class, 'detail'])->name('voters.detail');
 	Route::post('/admin/voters/create', [VoterController::class, 'create'])->name('voters.create');
-	Route::post('/admin/voters/hapus/{id}', [VoterController::class, 'destroy'])->name('voters.hapus');
+	Route::post('/admin/voters/destroy/{id}', [VoterController::class, 'destroy'])->name('voters.hapus');
 	Route::get('/admin/voters/export', [VoterController::class, 'export'])->name('voters.export');
 	Route::get('/admin/voters/active', [VoterController::class, 'active'])->name('active');
 	Route::get('/admin/voters/non-active', [VoterController::class, 'nonActive'])->name('non-active');
 	Route::post('/voters/import', [VoterController::class, 'import'])->name('voters.import');
 
 	Route::get('/admin/role/index', [RoleController::class, 'index'])->name('role.index');
+	Route::post('/admin/role/create', [RoleController::class, 'create'])->name('role.store');
+	Route::put('/admin/role/update/', [RoleController::class, 'update'])->name('role.update');
+	Route::delete('/admin/role/destroy/{id}', [RoleController::class, 'destroy'])->name('role.destroy');
 
 	Route::get('/admin/profile/index', [ProfileController::class, 'index'])->name('profile.index');
 
@@ -123,7 +126,9 @@ Route::get('/guest/ts', [GuestController::class, 'ts'])->name('guest.ts');
 Route::post('/guest/pilih/ts', [GuestController::class, 'pilihts'])->name('guest.pilih.ts');
 
 // Guest Terimakasih 
-Route::get('/guest/terimakasih', [GuestController::class, 'terimakasih'])->name('terimakasih');
+Route::get('/guest/terimakasih', function() {
+	return view('guest.index');
+})->name('terimakasih');
 
 // Hangker Profile
 Route::get('/hangker', function () {

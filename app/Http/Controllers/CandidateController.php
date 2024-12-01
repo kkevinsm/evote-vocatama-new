@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Imports\CandidateImport;
 use App\Models\Candidate;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -12,20 +13,22 @@ class CandidateController extends Controller
     public function index()
     {
         $datas = Candidate::all();
+        $roles = Role::all();
 
         return view('admin.candidate.index', compact([
             'datas',
+            'roles',
         ]));
     }
 
     public function create(Request $request)
     {
-        // return $request->asal;
+        // return $request;
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
   
-        if ($image = $request->file('foto')) {
+        if ($image = $request->file('photo')) {
             $destinationPath = 'image/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
@@ -33,7 +36,7 @@ class CandidateController extends Controller
         }
     
         Candidate::create([
-            'nama' => $request->nama,
+            'name' => $request->name,
             'role' => $request->role,
             'visi' => $request->visi,
             'misi' => $request->misi,
@@ -46,8 +49,8 @@ class CandidateController extends Controller
     public function update(Request $request, $id)
     {
         Candidate::where('id', $id)->update([
-            'nama' => $request->nama,
-            'asal' => $request->asal,
+            'name' => $request->name,
+            'role' => $request->role,
             'visi' => $request->visi,
             'misi' => $request->misi,
         ]);
@@ -59,17 +62,17 @@ class CandidateController extends Controller
     {
         Candidate::where('id', $id)->delete();
 
-        return $id;
-
         return redirect()->back()->with('status', 'Data berhasil dihapus');
     }
 
     public function detail($id)
     {
-        $data = Candidate::where('id', $id)->first();
+        $candidate = Candidate::where('id', $id)->first();
+        $roles = Role::all();
 
         return view('admin.candidate.detail', compact(
-            'data'
+            'candidate',
+            'roles'
         ));
     }
 
