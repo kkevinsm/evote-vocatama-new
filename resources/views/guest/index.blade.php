@@ -10,6 +10,27 @@
 @endsection
 
 @section('content')
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
+        <div class="container-fluid py-1 px-3">
+            <nav aria-label="breadcrumb">
+                <h6 class="font-weight-bolder mb-0 text-capitalize">{{ Auth::user()->name }}</h6>
+            </nav>
+            <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4 d-flex justify-content-end" id="navbar"> 
+                <ul class="navbar-nav  justify-content-end">
+                <li class="nav-item d-flex align-items-center">
+                    <a href="{{ url('/logout') }}" class="nav-link text-body font-weight-bold px-0 d-none d-md-flex">
+                        <i class="fa fa-user me-sm-1"></i>
+                            <span class="d-sm-inline d-none">Sign Out</span>
+                    </a>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+
     @foreach($roles as $index => $role)
     <div class=" min-vh-85">
         <div class="container-fluid" >
