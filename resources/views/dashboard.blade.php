@@ -294,18 +294,54 @@
             });
 
             // Setup warna untuk chart
+            // Setup warna untuk chart
             const ctx = document.getElementById(`pieChart${index + 1}`).getContext("2d");
-            const colors = [
-                "#7928ca", "#17ad37", "#2152ff", "#ea0606", "#ffcc00", 
-                "#00ff7f", "#00ffff", "#ff00ff", "#0000ff", "#f53939"
+
+            // Fungsi untuk membuat gradien dinamis
+            function generateGradient(ctx, color1, color2) {
+                const gradient = ctx.createLinearGradient(0, 0, 400, 400); // Gradien diagonal
+                gradient.addColorStop(0, color1);
+                gradient.addColorStop(1, color2);
+                return gradient;
+            }
+
+            // Palet warna dasar (20 warna gradien)
+            const colorPairs = [
+                ["#7928ca", "#9d57ff"], // Ungu
+                ["#17ad37", "#1df24a"], // Hijau
+                ["#2152ff", "#5e84ff"], // Biru
+                ["#ea0606", "#ff5733"], // Merah
+                ["#ffcc00", "#ffee00"], // Kuning
+                ["#00ff7f", "#66ffb2"], // Hijau Mint
+                ["#00ffff", "#66ffff"], // Cyan
+                ["#ff00ff", "#ff66ff"], // Magenta
+                ["#0000ff", "#6666ff"], // Biru Tua
+                ["#f53939", "#ff5e5e"], // Merah Muda
+                ["#ff4500", "#ff7043"], // Oranye
+                ["#9400d3", "#ba5eff"], // Violet Gelap
+                ["#00bfff", "#5ecfff"], // Langit Biru
+                ["#228b22", "#3ec25e"], // Hijau Tua
+                ["#ff1493", "#ff67c4"], // Pink Gelap
+                ["#8b0000", "#ff3333"], // Merah Darah
+                ["#ffd700", "#ffe34d"], // Emas
+                ["#40e0d0", "#89e9db"], // Pirus
+                ["#4169e1", "#6b9efb"], // Biru Kerajaan
+                ["#ff6347", "#ff7d6f"], // Tomat
             ];
-            const backgroundColors = labels.map((_, i) => colors[i % colors.length]);
+
+            // Hasilkan gradien unik untuk setiap label
+            const backgroundColors = labels.map((_, i) => {
+                const [startColor, endColor] = colorPairs[i % colorPairs.length];
+                return generateGradient(ctx, startColor, endColor);
+            });
+
+
 
             // Buat chart
             new Chart(ctx, {
                 type: "pie",
                 data: {
-                    labels: labels,
+                    labels: labels, 
                     datasets: [
                         {
                             data: dataHaha,
@@ -322,6 +358,9 @@
                         title: {
                             display: true,
                             text: `Votes for Role: ${role.name}`,
+                        },
+                        legend: {
+                            display: false,
                         },
                     },
                 },

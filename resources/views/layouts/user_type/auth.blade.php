@@ -1,7 +1,13 @@
 @extends('layouts.app')
 
 @section('head')
-<script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
+
+{{-- <script src="{{ asset('assets/ckeditor/ckeditor.js') }}"></script> --}}
+<script src="https://cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script>
+        
+
+
+
 @endsection
 
 @section('auth')
