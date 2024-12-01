@@ -91,9 +91,10 @@
                     <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
                         <div class="card z-index-2 max-height-600">
                             <div class="card-body p-4">
-                                <div class="border-radius-lg py-2 shadow-sm" 
+                                <div class="border-radius-lg py-2 shadow-sm justify-content-center" 
                                     style="background-image: url({{ asset('image/' . $data->image) }});
-                                            height: 250px; background-size: cover; width: 100%;">
+                                            height: 300px; background-size: cover; width: 100%;"
+                                            class="mx-auto d-block">
                                 </div>
             
                                 <div class="row mt-2">
