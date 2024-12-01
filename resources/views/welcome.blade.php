@@ -28,7 +28,6 @@
         {{-- !-- Icons --}}
         <link href="/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 
-        <script src="https://cdn.ckeditor.com/4.25.0/standard/ckeditor.js"></script>
 
     </head>
     <body class="antialiased">
