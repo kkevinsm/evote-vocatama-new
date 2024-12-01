@@ -275,16 +275,9 @@
         const logs = @json($logs);
         const candidates = @json($candidates);
 
-        // console.log("$candidates", @json($candidates));
-
-
         // Iterasi setiap role untuk membuat dataset
         roles.forEach((role, index) => {
-            console.log("candidates", candidates);
-            console.log("role", role);
-
             const roleCandidates = candidates.filter(candidate => candidate.role === role.name);
-            console.log("roleCandidates", roleCandidates);
 
             // Labels dan data untuk chart
             const labels = roleCandidates.map(candidate => candidate.name);
@@ -293,7 +286,6 @@
                 return logs.filter(log => log.candidate_id === candidate.id).length;
             });
 
-            // Setup warna untuk chart
             // Setup warna untuk chart
             const ctx = document.getElementById(`pieChart${index + 1}`).getContext("2d");
 
@@ -308,6 +300,7 @@
             // Palet warna dasar (20 warna gradien)
             const colorPairs = [
                 ["#7928ca", "#9d57ff"], // Ungu
+                ["#00bfff", "#5ecfff"], // Langit Biru
                 ["#17ad37", "#1df24a"], // Hijau
                 ["#2152ff", "#5e84ff"], // Biru
                 ["#ea0606", "#ff5733"], // Merah
@@ -319,7 +312,6 @@
                 ["#f53939", "#ff5e5e"], // Merah Muda
                 ["#ff4500", "#ff7043"], // Oranye
                 ["#9400d3", "#ba5eff"], // Violet Gelap
-                ["#00bfff", "#5ecfff"], // Langit Biru
                 ["#228b22", "#3ec25e"], // Hijau Tua
                 ["#ff1493", "#ff67c4"], // Pink Gelap
                 ["#8b0000", "#ff3333"], // Merah Darah
@@ -335,13 +327,11 @@
                 return generateGradient(ctx, startColor, endColor);
             });
 
-
-
             // Buat chart
             new Chart(ctx, {
                 type: "pie",
                 data: {
-                    labels: labels, 
+                    labels: labels,
                     datasets: [
                         {
                             data: dataHaha,
@@ -360,7 +350,7 @@
                             text: `Votes for Role: ${role.name}`,
                         },
                         legend: {
-                            display: false,
+                            display: false, // Atur legend menjadi false jika tidak ingin tampil
                         },
                     },
                 },
@@ -368,6 +358,7 @@
         });
     });
 </script>
+
 
 <script>
     // Function to extract chart data and export as a table (CSV)
