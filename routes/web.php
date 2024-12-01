@@ -114,7 +114,7 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 // Guest IPM
-Route::get('/guest/ipm', [GuestController::class, 'ipm'])->name('guest.index');
+// Route::get('/guest/ipm', [GuestController::class, 'ipm'])->name('guest.index');
 Route::post('/guest/pilih/ipm', [GuestController::class, 'pilihipm'])->name('guest.pilih.ipm');
 
 // Guest HW
@@ -125,6 +125,8 @@ Route::post('/guest/pilih/hw', [GuestController::class, 'pilihhw'])->name('guest
 Route::get('/guest/ts', [GuestController::class, 'ts'])->name('guest.ts');
 Route::post('/guest/pilih/ts', [GuestController::class, 'pilihts'])->name('guest.pilih.ts');
 
+// Guest Index
+Route::get('/guest', [GuestController::class, 'ipm'])->name('guest.index');
 // Guest Terimakasih 
 Route::get('/guest/terimakasih', function() {
 	return view('guest.index');

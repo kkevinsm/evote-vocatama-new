@@ -13,6 +13,13 @@ use App\Models\User;
 
 class GuestController extends Controller
 {
+    public function index()
+    {
+        $datas = Candidate::all();
+        return view('guest.index', compact([
+            'datas'
+        ]));
+    }
 
     public function ipm()
     {
