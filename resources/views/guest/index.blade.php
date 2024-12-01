@@ -10,10 +10,11 @@
 @endsection
 
 @section('content')
+    @foreach($roles as $index => $role)
     <div class=" min-vh-85">
         <div class="container-fluid" >
             <div class="card card-body blur shadow-blur">
-                <div class="row gx-4 align-items-center text-center text-md-start"> <!-- Tambahkan responsif -->
+                <div class="row gx-4 align-items-center text-center text-md-start">
                     <!-- Foto -->
                     <div class="col-12 col-md-auto">
                         <div class="avatar avatar-xl mx-auto mx-md-0 position-relative">
@@ -21,13 +22,14 @@
                         </div>
                     </div>
                     <!-- Heading dan Paragraf -->
+                    
                     <div class="col-12 col-md-auto my-auto">
                         <div class="h-100">
                             <p class="mb-0 font-weight-bold text-sm">
                                 PILIH CALON FORMATUR
                             </p>
                             <h5 class="mb-1">
-                                CRUD ROLES (EX: IKATAN PELAJAR MUHAMMADIYAH)
+                                {{ $role->name }}
                             </h5>
                         </div>
                     </div>
@@ -53,18 +55,17 @@
                 <!-- Your card content for the candidate cards goes here -->
             </div>
         </div>
-
-        <!-- Card 1 -->
+        
         <div class="container-fluid">
             <div class="row">
                 <!-- Card -->
-                @foreach($datas as $data)
+                @foreach($groupedDatas[$role['name']] as $data)
                 <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
                     <div class="card z-index-2 max-height-600">
                         <div class="card-body p-4">
                             <!-- Foto -->
                             <div class="border-radius-lg py-2 shadow-sm" 
-                                 style="background-image: url({{ asset('assets/img/bruce-mars.jpg') }});
+                                 style="background-image: url({{ asset('image/' . $data->image) }});
                                         height: 250px; background-size: cover; width: 100%;">
                             </div>
         
@@ -82,7 +83,8 @@
                                             <input id="pilihan{{ $data->id }}" type="checkbox" class="hidden" name="category[]" value="{{ $data->id }}">
                                             <button id="vote{{$data->id}}" type="button" class="btn bg-gradient-success" onclick="vote({{ $data->id }}); checkSelected();">Vote</button>
                                             <button id="unVote{{$data->id}}" type="button" class="btn bg-gradient-danger hidden" onclick="unVote({{ $data->id }}); checkSelected();">Unvote</button>
-                                            <button id="visiMisi{{$data->id}}" type="button" class="btn bg-gradient-dark" data-bs-toggle="modal" data-bs-target="#modal-visi-misi" onclick="showVisiMisi({{ $data->id }});">Visi & Misi</button>
+
+                                            <button id="visiMisi{{$data->id}}" type="button" class="btn bg-gradient-dark" data-bs-toggle="modal" data-bs-target="#modal-visi-misi" data-id="{{ $data->id }}" data-visi="{{ $data->visi }}" data-misi="{{ $data->misi }}">Visi & Misi</button>
                                         </div>
                                     </div>
                                 </div>
@@ -94,6 +96,7 @@
             </div>
         </div>
     </div>
+    @endforeach
 </div>
 
 {{-- !-- Modal Visi Misi --}}
@@ -110,17 +113,10 @@
             </div>
             <!-- Modal Body -->
             <div class="modal-body">
-            <h6 class="font-weight-bold text-dark">Visi:</h6>
-            <p>
-                Mewujudkan komunitas yang berdaya saing global dengan semangat keislaman, integritas, dan inovasi.
-            </p>
-            <h6 class="font-weight-bold text-dark mt-4">Misi:</h6>
-            <ul>
-                <li>Memperkuat peran pelajar Muhammadiyah sebagai agen perubahan sosial.</li>
-                <li>Menanamkan nilai-nilai keislaman dalam setiap kegiatan organisasi.</li>
-                <li>Memfasilitasi pelajar untuk mengembangkan potensi akademik dan non-akademik.</li>
-                <li>Menjalin kolaborasi strategis dengan berbagai pihak untuk mendukung kemajuan bersama.</li>
-            </ul>
+                <h6 class="font-weight-bold text-dark">Visi:</h6>
+                <p id="visi"></p>
+                <h6 class="font-weight-bold text-dark mt-4">Misi:</h6>
+                <p id="misi"></p>
             </div>
             <!-- Modal Footer -->
             <div class="modal-footer">
@@ -152,7 +148,7 @@
     //Menghitung
     function checkSelected() {
         var checkboxes = document.getElementsByName('category[]');
-        var count = 9;
+        var count = 0;
 
         console.log(count);
         for (var i = 0; i < checkboxes.length; i++) {
@@ -183,6 +179,17 @@
             position: 'topCenter',
         });
     }
-</script>
 
+    document.querySelectorAll('button[data-bs-target="#modal-visi-misi"]').forEach(button => {
+        button.addEventListener('click', function () {
+            const id = this.getAttribute('data-id');
+            const visi = this.getAttribute('data-visi');
+            const misi = this.getAttribute('data-misi');
+
+            document.querySelector('#visi').innerHTML = visi;
+            document.querySelector('#misi').innerHTML = misi;
+        });
+    });
+    
+</script>
 @endsection

@@ -48,7 +48,6 @@ class CandidateController extends Controller
 
     public function update(Request $request, $id)
     {
-        // return $request;
         $request->validate([
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -59,6 +58,8 @@ class CandidateController extends Controller
             $image->move($destinationPath, $profileImage);
             // $input['image'] = "$profileImage";
         }
+
+        // return $request;
 
         Candidate::where('id', $id)->update([
             'name' => $request->name,

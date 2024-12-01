@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Log;
 use App\Models\Pilihan;
+use App\Models\Role;
 use App\Models\User;
 
 class GuestController extends Controller
@@ -14,8 +15,23 @@ class GuestController extends Controller
     public function index()
     {
         $datas = Candidate::all();
+        $roles = Role::all();
+        $groupedDatas = [];
+
+        foreach ($roles as $role) {
+            $groupedDatas[$role['name']] = [];
+        }
+
+        foreach ($datas as $data) {
+            $groupedDatas[$data['role']][] = $data;
+        }
+
+        // return $groupedDatas;
+        // return $roles;
         return view('guest.index', compact([
-            'datas'
+            'datas',
+            'roles',
+            'groupedDatas'
         ]));
     }
 

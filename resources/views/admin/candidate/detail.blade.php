@@ -16,7 +16,7 @@
                     <img src="{{ asset('image/' . $candidate->image) }}" alt="candidates Photo" class="img-fluid rounded mb-3">
                     <div class="form-group">
                         <label for="photo">Change Photo:</label>
-                        <input type="file" class="form-control" id="photo" name="photo" accept="image/*">
+                        <input type="file" class="form-control" id="photo" name="photo" accept="image/*" value="{{ $candidate->image }}">
                         <small class="text-muted">Accepted formats: JPG, PNG (Max size: 2MB)</small>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                         <label for="role">Role:</label>
                         <select class="form-control" id="role" name="role" required>
                             @foreach ($roles as $role)
-                                <option value="{{ $role->id }}" {{ $candidate->role_id == $role->id ? 'selected' : '' }}>
+                                <option value="{{ $role->name }}" {{ $candidate->role == $role->name ? 'selected' : '' }}>
                                     {{ $role->name }}
                                 </option>
                             @endforeach
@@ -52,5 +52,8 @@
         </form>
     </div>
 </div>
-
+<script>
+    CKEDITOR.replace('visi');
+    CKEDITOR.replace('misi');
+</script>
 @endsection
