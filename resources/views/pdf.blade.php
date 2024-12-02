@@ -18,18 +18,11 @@
             display: flex;
             flex-wrap: wrap;
         }
-        .pdf-card {
-            width: 32%;
-        }
-    }
-    .pdf-row {
-        width: 100%;
-        overflow: hidden;
     }
 
     .pdf-card {
         float: left;
-        width: 32%; /* 3 card dalam satu baris */
+        width: 32%;
         margin-right: 2%;
         margin-bottom: 15px;
         border: 1px solid #ddd;
@@ -131,12 +124,10 @@
                                 <label><b>{{ \Illuminate\Support\Str::limit($data->name, 20, '...') }}</b></label>
                             </div>
                             <div class="form-group mb-0">
-                                <label>Username: </label>
-                                <label>{{ $data->username }}</label>
+                                <label><b>Username: {{ $data->username }}</b></label>
                             </div>
                             <div class="form-group mb-0">
-                                <label>Password: </label>
-                                <label>{{ $data->password }}</label>
+                                <label><b>Password: {{ $data->password }}</b></label>
                             </div>
                         </div>
                     </div>
