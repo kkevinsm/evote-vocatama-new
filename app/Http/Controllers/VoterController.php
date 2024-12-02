@@ -69,6 +69,7 @@ class VoterController extends Controller
         $datas = User::where('role_id', 2)->get();
 
         $pdf = Pdf::loadview('pdf', compact('datas'));
+        $pdf->setPaper('A4', 'portrait');
         // $pdf = PDF::loadView('pdf', compact('datas'));
         // $pdf = PDF::loadview('pdf', compact('datas'));
 

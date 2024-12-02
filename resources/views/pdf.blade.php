@@ -11,45 +11,38 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
   <style>
-    @media print {
-        /* Adjusting the layout for print */
-        .pdf-row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-        .pdf-card {
-            width: 48%; /* 48% width for two cards per row */
-            margin-bottom: 20px;
-            box-sizing: border-box;
-        }
+    /* Global Reset */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
 
-    .main-content .row {
+    /* Grid Layout */
+    .row {
         display: flex;
         flex-wrap: wrap;
-        gap: 15px;
-        justify-content: space-around;
+        margin: 0 -5px; /* Menghapus spasi antar kolom */
     }
 
+    .col-3 {
+        width: 25%; /* 4 card dalam satu baris */
+        padding: 5px; /* Jarak antar card */
+        box-sizing: border-box;
+    }
+
+    /* Card Style */
     .card {
-        flex: 0 1 calc(50% - 15px); /* Adjust to 50% for two cards per row */
-        height: 250px;
-        margin: 0;
         border: 1px solid #ddd;
         border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        height: auto; /* Sesuaikan tinggi otomatis */
         overflow: hidden;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        background-color: #fff;
-    }
-
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     }
 
     .card-header {
@@ -62,12 +55,12 @@
     .card-header h6 {
         margin: 0;
         font-size: 14px;
-        color: #333;
         font-weight: bold;
+        color: #333;
     }
 
     .card-body {
-        padding: 15px;
+        padding: 10px;
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -77,7 +70,6 @@
         font-size: 12px;
         color: #555;
         margin-bottom: 5px;
-        display: block;
     }
 
     .card-body b {
@@ -86,7 +78,31 @@
     }
 
     .form-group {
-        margin-bottom: 0;
+        margin-bottom: 10px;
+    }
+
+    /* Print Styles */
+    @media print {
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0; /* Hapus margin */
+        }
+
+        .col-3 {
+            float: left;
+            width: 23%; /* 4 card dalam satu baris */
+            padding: 5px;
+        }
+
+        .card {
+            box-shadow: none; /* Hapus bayangan di mode cetak */
+        }
+
+        .card-header {
+            background-color: #fff; /* Hapus background di mode cetak */
+            color: #000; /* Warna teks lebih kontras */
+        }
     }
   </style>
 
@@ -100,22 +116,26 @@
         <!-- Main Content -->
         <div class="main-content" style="padding: 15px 30px 0px 80px;">
             <section class="section">
-                <div class="pdf-row">
+                <div class="row">
                     @foreach($datas as $data)
-                    <div class="card">
-                        <div class="card-header">
-                            <h6 style="color:#262626">Akun Pemilih {{ $data->instansi }}</h6>
-                        </div>
-                        <div class="card-body mb-0">
-                            <div class="form-group mb-0">
-                                <label>Nama</label>
-                                <label><b>{{ \Illuminate\Support\Str::limit($data->name, 20, '...') }}</b></label>
+                    <div class="col-3">
+                        <div class="card">
+                            <div class="card-header">
+                                <h6 style="color:#262626">Akun Pemilih {{ $data->instansi }}</h6>
                             </div>
-                            <div class="form-group mb-0">
-                                <label><b>Username: {{ $data->username }}</b></label>
-                            </div>
-                            <div class="form-group mb-0">
-                                <label><b>Password: {{ $data->password }}</b></label>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Nama:</label>
+                                    <b>{{ \Illuminate\Support\Str::limit($data->name, 20, '...') }}</b>
+                                </div>
+                                <div class="form-group">
+                                    <label>Username:</label>
+                                    <label><b>{{ $data->username }}</b></label>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password:</label>
+                                    <label><b>{{ $data->password }}</b></label>
+                                </div>
                             </div>
                         </div>
                     </div>
