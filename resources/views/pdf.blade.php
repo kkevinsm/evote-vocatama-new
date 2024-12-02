@@ -5,61 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Export PDF</title>
     <style>
-        /* Reset and Base Styles */
         body {
-            font-family: Arial, sans-serif;
-            font-size: 12px;
-            margin: 0;
-            padding: 0;
-        }
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+}
 
-        /* Table Layout for Cards */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Tambahkan ini untuk memastikan tabel mengikuti lebar yang konsisten */
+}
 
-        td {
-            width: 33.33%; /* 3 columns */
-            padding: 10px;
-            vertical-align: top;
-        }
+td {
+    width: 33.33%; /* Untuk membuat 3 kolom dalam satu baris */
+    padding: 10px;
+    vertical-align: top;
+}
 
-        .card {
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 10px;
-            box-sizing: border-box;
-            height: 100%; /* To make all cards the same height */
-        }
+.card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    height: auto; /* Pastikan kartu menyesuaikan isi */
+}
 
-        .card-header {
-            font-weight: bold;
-            text-align: center;
-            background-color: #f5f5f5;
-            padding: 5px;
-            border-bottom: 1px solid #ddd;
-            border-radius: 10px 10px 0 0;
-        }
+.card-header {
+    font-weight: bold;
+    text-align: center;
+    background-color: #f5f5f5;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
 
-        .card-body {
-            padding: 10px 5px;
-        }
+.card-body {
+    padding: 5px;
+}
 
-        .form-group {
-            margin-bottom: 8px;
-        }
+.page-break {
+    page-break-before: always; /* Tambahkan class ini bila perlu untuk memaksa pindah halaman */
+}
 
-        .form-group label {
-            display: block;
-            font-size: 10px;
-            color: #555;
-        }
-
-        .form-group b {
-            font-size: 12px;
-            color: #333;
-        }
+@media print {
+    table {
+        page-break-inside: auto; /* Mencegah tabel terpotong */
+    }
+    tr {
+        page-break-inside: avoid; /* Mencegah baris tabel terpotong */
+    }
+    td {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+}
     </style>
 </head>
 <body>
