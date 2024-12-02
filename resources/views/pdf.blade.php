@@ -10,41 +10,30 @@
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <!-- <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> -->
-
   <style>
-        @media print {
+    @media print {
+        /* Adjusting the layout for print */
         .pdf-row {
             display: flex;
             flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .pdf-card {
+            width: 48%; /* 48% width for two cards per row */
+            margin-bottom: 20px;
+            box-sizing: border-box;
         }
     }
 
-    .pdf-card {
-        float: left;
-        width: 32%;
-        margin-right: 2%;
-        margin-bottom: 15px;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        padding: 10px;
-        box-sizing: border-box;
-        text-align: left;
-    }
-
-    .pdf-card:nth-child(3n) {
-        margin-right: 0; /* Hapus margin pada card terakhir di setiap baris */
-    }
-    
     .main-content .row {
         display: flex;
         flex-wrap: wrap;
-        gap: 15px; /* Jarak antar-card */
-        justify-content: space-around; /* Mengatur posisi card */
+        gap: 15px;
+        justify-content: space-around;
     }
 
     .card {
-        flex: 0 1 calc(25% - 15px); /* Ukuran 25% dari lebar, dikurangi jarak */
+        flex: 0 1 calc(50% - 15px); /* Adjust to 50% for two cards per row */
         height: 250px;
         margin: 0;
         border: 1px solid #ddd;
@@ -99,8 +88,7 @@
     .form-group {
         margin-bottom: 0;
     }
-</style>
-
+  </style>
 
   <!-- CSS Tambahan -->
   @yield('head')
@@ -112,7 +100,7 @@
         <!-- Main Content -->
         <div class="main-content" style="padding: 15px 30px 0px 80px;">
             <section class="section">
-                <div class="row">
+                <div class="pdf-row">
                     @foreach($datas as $data)
                     <div class="card">
                         <div class="card-header">
@@ -136,6 +124,6 @@
             </section>
         </div>
     </div>    
-  </div> -->
+  </div>
 </body>
 </html>
