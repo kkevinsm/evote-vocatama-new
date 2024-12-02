@@ -6,7 +6,7 @@ use App\Imports\VoterImport;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class VoterController extends Controller
 {
@@ -35,9 +35,10 @@ class VoterController extends Controller
         $username = generateRandomString(4);
         $password = generateRandomString(4);
 
-        // return $password;
+        // return $request;
         User::create([
             'name' => $request->name,
+            'instansi' => $request->instansi,
             'role_id' => 2,
             'username' => $username,
             'password' => $password,
@@ -65,21 +66,27 @@ class VoterController extends Controller
 
     public function export()
     {
-        $datas = User::where('id', 2)->get();
-        $pdf = pdf::loadview('pdf', compact('datas'))->setPaper('a4', 'landscape');
+        $datas = User::where('role_id', 2)->get();
 
-        return $pdf->download();
+        $pdf = Pdf::loadview('pdf', compact('datas'));
+        // $pdf = PDF::loadView('pdf', compact('datas'));
+        // $pdf = PDF::loadview('pdf', compact('datas'));
+
+        return $pdf->download('voter.pdf');
     }
 
     public function view()
     {
-        $datas = User::where('id', 2)->get();
+        $datas = User::where('role_id', 2)->get();
+
+        // return $datas;
 
         return view('pdf', compact(['datas']));
     }
 
     public function import(Request $request)
     {
+        // return $request;
         $data = User::where('id', 2)->get();
         Excel::import(new VoterImport,request()->file('file'));
 

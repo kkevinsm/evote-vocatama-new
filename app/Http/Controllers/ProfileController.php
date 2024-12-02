@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
     public function  index()
     {
-        return view('admin.profile.index'); 
+        $data = User::where('id', 1)->first();
+
+        // return $data;
+        return view('admin.profile.index', compact([
+            'data'
+        ])); 
     }
 }

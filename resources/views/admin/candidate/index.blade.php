@@ -1,7 +1,6 @@
 @extends('layouts.user_type.auth')
 
 @section('content')
-
 <div>
     <div class="row">
         <div class="col-12">
@@ -12,8 +11,8 @@
                             <h5 class="mb-0">Candidates Data</h5>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#import">Import</button>
-                            <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#add">Add</button>
+                            <button type="button" class="btn btn-sm bg-gradient-info" data-bs-toggle="modal" data-bs-target="#import">Import</button>
+                            <button type="button" class="btn btn-sm bg-gradient-success" data-bs-toggle="modal" data-bs-target="#add">Add</button>
                         </div>
                     </div>
                 </div>
@@ -58,14 +57,14 @@
                                     </td>
                                     <td class="text-center">
                                         <!-- Button Detail -->
-                                        <a href="{{ route('candidate.detail', $candidate->id) }}" class="btn btn-info btn-sm mx-3" data-bs-toggle="tooltip" data-bs-original-title="Detail Candidate">
+                                        <a href="{{ route('candidate.detail', $candidate->id) }}" class="btn bg-gradient-info btn-sm mx-3" data-bs-toggle="tooltip" data-bs-original-title="Detail Candidate">
                                             Detail
                                         </a>
                                         <!-- Button Delete -->
                                         <form action="{{ route('candidate.destroy', $candidate->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Are you sure you want to delete this candidate?');">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm mx-3" data-bs-toggle="tooltip" data-bs-original-title="Delete Candidate">
+                                            <button type="submit" class="btn bg-gradient-danger btn-sm mx-3" data-bs-toggle="tooltip" data-bs-original-title="Delete Candidate">
                                                 Delete
                                             </button>
                                         </form>

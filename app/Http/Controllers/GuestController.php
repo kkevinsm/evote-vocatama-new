@@ -50,6 +50,10 @@ class GuestController extends Controller
                     'user_id' => Auth::user()->id,
                     'candidate_id' => $value,
                 ]);
+
+                User::where('id', Auth::user()->id)->update([
+                    'status' => 2,
+                ]);
             }
 
             return redirect()->route('terimakasih')->with('status', 'Terimakasih telah memilih!');

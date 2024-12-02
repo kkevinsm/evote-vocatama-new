@@ -2,7 +2,7 @@
   <footer class="footer py-0">
     <div class="container">
         <div class="row">
-          <div class="col-8 mx-auto text-center mt-1 mb-4">
+          <div class="col-8 mx-auto text-center mt-4 mb-4">
             <p class="mb-0 text-secondary">
               Copyright © <script>
                 document.write(new Date().getFullYear())

@@ -27,7 +27,7 @@
                                 PILIH CALON FORMATUR
                             </p>
                             <h5 class="mb-1">
-                                CRUD ROLES (EX: IKATAN PELAJAR MUHAMMADIYAH)
+                                {{ role()->name }}
                             </h5>
                         </div>
                     </div>

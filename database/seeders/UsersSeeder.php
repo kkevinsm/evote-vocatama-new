@@ -39,7 +39,7 @@ class UsersSeeder extends Seeder
                 'name' => $user['name'],
                 'role_id' => $user['role_id'],
                 'username' => $user['username'],
-                'password' => Hash::make($user['password']),
+                'password' => $user['password'],
                 'status' => $user['status'],
             ]);
         }
