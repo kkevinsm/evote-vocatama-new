@@ -3,6 +3,8 @@
 @section('content')
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+
 
 <div class="row">
     <!-- Card: Total Candidates -->
@@ -100,7 +102,7 @@
                     <canvas id="pieChart{{ $index+1 }}" height="200"></canvas>
                     <!-- Export Data Table Button -->
                     <div class="d-flex justify-content-center mt-3">
-                        <button type="button" class="btn btn-dark btn-sm" onclick="exportTableData('pieChart{{ $index+1 }}')">Export as Table</button>
+                        <button type="button" class="btn btn-dark btn-sm" onclick="exportTableData('pieChart{{ $index+1 }}')">Export as XLSX</button>
                     </div>
                 </div>
             </div>
@@ -361,38 +363,34 @@
 
 
 <script>
-    // Function to extract chart data and export as a table (CSV)
+    // Function to extract chart data and export as table (XLSX)
     function exportTableData(chartId) {
         const chart = Chart.getChart(chartId);
         const labels = chart.data.labels;
         const data = chart.data.datasets[0].data;
-        
-        // Create table header
-        let table = '<table border="1"><thead><tr><th>Label</th><th>Value</th></tr></thead><tbody>';
-        
-        // Add rows from chart data
+
+        // Create a worksheet from chart data
+        const worksheetData = [];
+
+        // Add header row
+        worksheetData.push(["Candidate", "Value"]);
+
+        // Add data rows from chart data
         for (let i = 0; i < labels.length; i++) {
-            table += `<tr><td>${labels[i]}</td><td>${data[i]}</td></tr>`;
+            worksheetData.push([labels[i], data[i]]);
         }
 
-        // Close table tag
-        table += '</tbody></table>';
-        
-        // Call function to export the table as CSV
-        exportToCSV(table, chartId);
-    }
+        // Convert to worksheet
+        const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
 
-    // Function to export HTML table to CSV
-    function exportToCSV(table, chartId) {
-        // Create a blob from the table HTML
-        const blob = new Blob([table], { type: 'text/csv' });
-        
-        // Create a link element to trigger the download
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = `${chartId}-data.csv`;  // Filename for CSV
-        link.click();
+        // Create a new workbook and append the worksheet
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Chart Data");
+
+        // Generate the XLSX file and prompt download
+        XLSX.writeFile(workbook, `${chartId}-data.xlsx`);
     }
 </script>
+
 
 @endsection

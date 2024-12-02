@@ -9,7 +9,7 @@
           <div class="row">
             <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
               <div class="text-center mb-2">
-                <img src="{{ asset('image/' . $data->photo) }}" alt="..." class="bg-white w-50 img-fluid rounded-circle shadow-sm p-3">
+                <img src="{{ asset('image/' . $data->photo) }}" alt="..." class="bg-white w-25 img-fluid rounded-circle shadow-sm p-3">
               </div>
               <div class="card-header pb-0 bg-transparent text-center mb-4">
                 <h2 class="font-weight-bolder text-info text-gradient">{{$appName}}</h2>
