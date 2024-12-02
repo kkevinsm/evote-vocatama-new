@@ -45,7 +45,8 @@
                         <!-- Foto -->
                         <div class="col-12 col-md-auto">
                             <div class="avatar avatar-xl mx-auto mx-md-0 position-relative">
-                                <img src="{{ asset('assets/img/bruce-mars.jpg') }}" alt="CRUD" class="w-100 border-radius-lg shadow-sm">
+                                <!-- <img src="{{ asset('assets/img/bruce-mars.jpg') }}" alt="CRUD" class="w-100 border-radius-lg shadow-sm"> -->
+                                <img src="{{ asset('image/' . $data->photo) }}" alt="..." class="bg-white h-100 w-100 border-radius-lg shadow-sm p-2">
                             </div>
                         </div>
                         <!-- Heading dan Paragraf -->
