@@ -78,11 +78,11 @@ td {
                             </div>
                             <div class="form-group">
                                 <label>Username:</label>
-                                <b>{{ $data->username }}</b>
+                                <label><br><b>{{ $data->username }}</b></br></label>
                             </div>
                             <div class="form-group">
                                 <label>Password:</label>
-                                <b>{{ $data->password }}</b>
+                                <label><br><b>{{ $data->password }}</b></br></label>
                             </div>
                         </div>
                     </div>
