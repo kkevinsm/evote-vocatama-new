@@ -11,6 +11,7 @@ class Voter extends Model
 
     protected $fillable = [
         'name',
+        'instansi',
         'asal',
         'role_id',
         'username',

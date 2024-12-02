@@ -14,6 +14,7 @@ use App\Http\Controllers\ResetController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\VoterController;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/admin/voters/create', [VoterController::class, 'create'])->name('voters.create');
 	Route::post('/admin/voters/destroy/{id}', [VoterController::class, 'destroy'])->name('voters.hapus');
 	Route::get('/admin/voters/export', [VoterController::class, 'export'])->name('voters.export');
+	Route::get('/admin/voters/export/view', [VoterController::class, 'view'])->name('voters.view');
 	Route::get('/admin/voters/active', [VoterController::class, 'active'])->name('active');
 	Route::get('/admin/voters/non-active', [VoterController::class, 'nonActive'])->name('non-active');
 	Route::post('/voters/import', [VoterController::class, 'import'])->name('voters.import');
@@ -143,5 +145,6 @@ Route::get('/hangker', function () {
 })->name('hangker');
 
 Route::get('/login', function () {
-	return view('session/login-session');
+	$data = User::where('id', 1)->first();
+	return view('session/login-session', compact(['data']));
 })->name('login');

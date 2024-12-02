@@ -27,12 +27,18 @@ class RoleController extends Controller
 
     public function update(Request $request)
     {
-        return $request;
-        Role::where('id', $id)->update([
-            'name' => $request->name,
-            'max_vote' => $request->max_vote,
+        // Validasi input
+        $validated = $request->validate([
+            'id' => 'required|exists:roles,id',
+            'name' => 'required|string|max:255',
+            'max_vote' => 'required|integer|min:0',
         ]);
-
+    
+        Role::where('id', $validated['id'])->update([
+            'name' => $validated['name'],
+            'max_vote' => $validated['max_vote'],
+        ]);
+    
         return redirect()->back()->with('status', 'Data berhasil diperbarui');
     }
 

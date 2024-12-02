@@ -12,7 +12,7 @@
                             <h5 class="mb-0">Roles Vote</h5>
                         </div>
                         <div class="d-flex align-items-center">
-                            <a href="#" class="btn btn-success btn-sm mb-0 me-2" type="button" data-bs-toggle="modal" data-bs-target="#add">
+                            <a href="#" class="btn bg-gradient-success btn-sm mb-0 me-2" type="button" data-bs-toggle="modal" data-bs-target="#add">
                                 New
                             </a>
                             <input type="search" class="form-control form-control-sm" placeholder="Search ..." aria-label="Search">
@@ -50,14 +50,14 @@
                                 <td class="text-center">
                                     <p class="text-xs font-weight-bold mb-0">{{ $data->max_vote }}</p>
                                 </td>
-                                <td class="text-center">
-                                    <button class="btn btn-info btn-sm mx-3" data-bs-toggle="modal" data-bs-target="#edit" data-id="{{ $data->id }}" data-name="{{ $data->name }}" data-max-vote="{{ $data->max_vote }}">
+                                <td class="text-center gap-2">
+                                    <button class="btn bg-gradient-info btn-sm mx-3" data-bs-toggle="modal" data-bs-target="#edit" data-id="{{ $data->id }}" data-name="{{ $data->name }}" data-max-vote="{{ $data->max_vote }}">
                                         Edit
                                     </button>
                                     <form action="{{ route('role.destroy', $data->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Are you sure you want to delete this candidate?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm mx-3" data-bs-toggle="tooltip" data-bs-original-title="Delete Candidate">
+                                        <button type="submit" class="btn bg-gradient-danger btn-sm mx-3" data-bs-toggle="tooltip" data-bs-original-title="Delete Candidate">
                                             Delete
                                         </button>
                                     </form>
@@ -120,24 +120,24 @@
             </div>
             
             <form action="{{ route('role.update') }}" method="POST" id="edit-form">
-            @csrf
-            @method('PUT')
+                @csrf
+                @method('PUT')
                 <input type="hidden" class="form-control" id="id" name="id">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Description Role</label>
-                        <input type="text" class="form-control" id="description-role">
+                        <label for="description-role" class="col-form-label">Description Role</label>
+                        <input type="text" class="form-control" id="description-role" name="name" placeholder="Input role name...">
                     </div>
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Max vote</label>
-                        <input type="number" class="form-control" id="max-vote" min="0">
+                        <label for="max-vote" class="col-form-label">Max vote</label>
+                        <input type="number" class="form-control" id="max-vote" name="max_vote" min="0" placeholder="Input max vote...">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn bg-gradient-success">Edit</button>
+                    <button type="submit" class="btn bg-gradient-success">Save changes</button>
                 </div>
-            </form>
+            </form>            
         </div>
     </div>
 </div>
@@ -147,15 +147,16 @@
 <script>
     // Saat tombol edit diklik
     document.querySelectorAll('button[data-bs-target="#edit"]').forEach(button => {
-        button.addEventListener('click', function () {
-            const id = this.getAttribute('data-id');
-            const name = this.getAttribute('data-name');
-            const maxVote = this.getAttribute('data-max-vote');
+    button.addEventListener('click', function () {
+        const id = this.getAttribute('data-id');
+        const name = this.getAttribute('data-name');
+        const maxVote = this.getAttribute('data-max-vote');
 
-            // Isi nilai input di modal edit
-            document.querySelector('#edit #description-role').value = name;
-            document.querySelector('#edit #max-vote').value = maxVote;
-        });
+        // Isi nilai input di modal edit
+        document.querySelector('#edit #id').value = id;
+        document.querySelector('#edit #description-role').value = name;
+        document.querySelector('#edit #max-vote').value = maxVote;
     });
+});
 </script>
 @endsection

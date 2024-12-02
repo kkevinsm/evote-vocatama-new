@@ -3,8 +3,8 @@
   <div class="sidenav-header">
     <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
     <a class="align-items-center d-flex m-0 navbar-brand text-wrap" href="{{ route('dashboard') }}">
-        <img src="{{ asset('assets/img/logo-ct.png') }}" class="navbar-brand-img h-100 crud" alt="...">
-        <span class="ms-3 font-weight-bold">crud</span>
+        <img src="{{ Auth::user()->photo ? asset('image/' . Auth::user()->photo) : asset('assets/img/default-avatar.png') }}" >
+        <span class="ms-3 font-weight-bold">{{ Auth::user()->name }}</span>
     </a>
   </div>
   <hr class="horizontal dark mt-0">

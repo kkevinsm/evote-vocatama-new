@@ -14,21 +14,23 @@
     <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
         <div class="container-fluid py-1 px-3">
-            <nav aria-label="breadcrumb">
-                <h6 class="font-weight-bolder mb-0 text-capitalize"></h6>
+            <nav aria-label="breadcrumb" class="w-100 d-flex justify-content-center justify-content-lg-start">
+                <h6 class="font-weight-bolder mb-0 text-capitalize text-center">Hi, {{ Auth::user()->name }}</h6>
             </nav>
-            <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4 d-flex justify-content-end" id="navbar"> 
-                <ul class="navbar-nav  justify-content-end">
-                <li class="nav-item d-flex align-items-center">
-                    <a href="{{ url('/logout') }}" class="nav-link text-body font-weight-bold px-0 d-none d-md-flex">
-                        <i class="fa fa-user me-sm-1"></i>
-                            <span class="d-sm-inline d-none">Sign Out</span>
-                    </a>
-                </li>
+            <div class="collapse navbar-collapse mt-sm-0 mt-2 d-flex justify-content-center justify-content-lg-end" id="navbar"> 
+                <ul class="navbar-nav justify-content-center justify-content-lg-end">
+                    <li class="nav-item d-flex align-items-center">
+                        <a href="{{ url('/logout') }}" 
+                        class="nav-link text-body font-weight-bold text-center"
+                        style="white-space: nowrap; padding: 0 10px;">
+                            <i class="fa fa-user me-2"></i>
+                            <span>Sign Out</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav>    
     <!-- End Navbar -->
 
     @foreach($roles as $index => $role)
@@ -37,7 +39,7 @@
         @csrf
         <input type="hidden" id="selectedValues{{ $role->id }}" name="selectedValues[{{ $role->id }}]" >
 
-            <div class="container-fluid">
+            <div class="container-fluid pt-3">
                 <div class="card card-body blur shadow-blur">
                     <div class="row gx-4 align-items-center text-center text-md-start">
                         <!-- Foto -->

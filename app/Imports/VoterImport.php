@@ -35,6 +35,7 @@ class VoterImport implements ToModel
 
         User::create([
             'name' => $row[0],
+            'instansi' => $row[1],
             'role_id' => 2,
             'username' => $username,
             'password' => $password,

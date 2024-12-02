@@ -11,16 +11,16 @@
             <div class="row gx-4">
                 <div class="col-auto">
                     <div class="avatar avatar-xl position-relative">
-                        <img src="{{ asset('assets/img/bruce-mars.jpg') }}" alt="..." class="w-100 border-radius-lg shadow-sm">
+                        <img src="{{ asset('image/' . $data->photo) }}" alt="..." class="bg-white h-100 w-100 border-radius-lg shadow-sm p-2">
                     </div>
                 </div>
                 <div class="col-auto my-auto">
                     <div class="h-100">
                         <h5 class="mb-1">
-                            {{ __('Admin') }}
+                            {{ Auth::user()->name }}
                         </h5>
                         <p class="mb-0 font-weight-bold text-sm">
-                            {{ __('Admin e cok') }}
+                            {{ Auth::user()->username }}
                         </p>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="user-name" class="form-control-label">{{ __('Username') }}</label>
+                                <label for="user-name" class="form-control-label">{{ __('Name') }}</label>
                                 <div class="@error('user.name')border border-danger rounded-3 @enderror">
                                     <input class="form-control" value="{{ auth()->user()->name }}" type="text" placeholder="Username" id="user-name" name="name">
                                         @error('name')
@@ -65,9 +65,9 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="user-first-name" class="form-control-label">{{ __('Name') }}</label>
+                                <label for="user-first-name" class="form-control-label">{{ __('Username') }}</label>
                                 <div class="@error('first_name')border border-danger rounded-3 @enderror">
-                                    <input class="form-control" type="text" placeholder="Name" id="user-first-name" name="first_name" value="{{ auth()->user()->first_name }}">
+                                    <input class="form-control" type="text" placeholder="Name" id="user-first-name" name="first_name" value="{{ auth()->user()->username }}">
                                         @error('first_name')
                                             <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                         @enderror
