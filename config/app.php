@@ -20,11 +20,17 @@ return [
     */
 
     'name' => function () {
-        $name = Cache::remember('app_name', 3600, function () {
+        return Cache::remember('app_name', 3600, function () {
             return \App\Models\User::where('id', 1)->first()->name ?? env('APP_NAME', 'Admin');
         });
-        return $name;
     },
+
+    'image_profile' => function () {
+        return Cache::remember('image_profile', 3600, function () {
+            return \App\Models\User::where('id', 1)->first()->photo;
+        });
+    },
+
 
     /*
     |--------------------------------------------------------------------------
