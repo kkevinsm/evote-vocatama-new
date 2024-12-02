@@ -13,6 +13,36 @@
   <!-- <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> -->
 
   <style>
+        @media print {
+        .pdf-row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .pdf-card {
+            width: 32%;
+        }
+    }
+    .pdf-row {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .pdf-card {
+        float: left;
+        width: 32%; /* 3 card dalam satu baris */
+        margin-right: 2%;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 10px;
+        box-sizing: border-box;
+        text-align: left;
+    }
+
+    .pdf-card:nth-child(3n) {
+        margin-right: 0; /* Hapus margin pada card terakhir di setiap baris */
+    }
+    
     .main-content .row {
         display: flex;
         flex-wrap: wrap;
