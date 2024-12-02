@@ -133,6 +133,10 @@ Route::get('/guest/terimakasih', function() {
 	return view('guest.terimakasih');
 })->name('terimakasih');
 
+// Guest logout 
+Route::post('/logout', [SessionsController::class, 'destroy'])->name('logout');
+
+
 // Hangker Profile
 Route::get('/hangker', function () {
 	return view('hangker');

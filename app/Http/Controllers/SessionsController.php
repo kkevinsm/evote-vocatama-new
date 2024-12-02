@@ -35,11 +35,25 @@ class SessionsController extends Controller
         }
     }
     
-    public function destroy()
+    // public function destroy()
+    // {
+
+    //     Auth::logout();
+
+    //     return redirect('/login')->with(['success'=>'You\'ve been logged out.']);
+    // }
+
+        public function destroy()
     {
-
         Auth::logout();
+        session()->invalidate(); // Untuk mengakhiri sesi saat ini
+        session()->regenerateToken(); // Regenerasi token untuk keamanan
 
-        return redirect('/login')->with(['success'=>'You\'ve been logged out.']);
+        return redirect()->route('login')->with('success', 'You\'ve been logged out.');
     }
+
 }
+    
+
+
+   

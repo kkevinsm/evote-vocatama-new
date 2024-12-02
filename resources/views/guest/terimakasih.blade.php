@@ -1,38 +1,30 @@
 @extends('layouts.guest')
 
 @section('content')
-    <div class=" min-vh-85">
-        <div class="container-fluid" >
-            <div class="card card-body blur shadow-blur">
-                <div class="row gx-4 align-items-center text-center text-md-start"> <!-- Tambahkan responsif -->
-                    <!-- Foto -->
-                    <div class="col-12 col-md-auto">
-                        <div class="avatar avatar-xl mx-auto mx-md-0 position-relative">
-                            <img src="{{ asset('assets/img/bruce-mars.jpg') }}" alt="CRUD" class="w-100 border-radius-lg shadow-sm">
+<div class="main-content d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+    <div class="row w-100">
+        <div class="col-12 col-md-6 col-sm-12 mx-auto">
+            <div class="card">
+                <div class="card-body text-center">
+                    <div class="empty-state" data-height="400">
+                        <div class="empty-state-icon bg-success">
+                            <i class="fas fa-check"></i>
                         </div>
-                    </div>
-                    <!-- Heading dan Paragraf -->
-                    <div class="col-12 col-md-auto my-auto">
-                        <div class="h-100">
-                            <p class="mb-0 font-weight-bold text-sm">
-                                PILIH CALON FORMATUR
-                            </p>
-                            <h5 class="mb-1">
-                                CRUD ROLES (EX: IKATAN PELAJAR MUHAMMADIYAH)
-                            </h5>
-                        </div>
-                    </div>
-                    <!-- Tombol Submit -->
-                    <div class="col-12 col-md-auto ms-auto d-flex justify-content-md-end justify-content-center">
-                        <form action="/guest/terimakasih" method="POST">
-                            @csrf
-                            <button type="submit" class="btn bg-gradient-info font-weight-bold" style="margin-bottom: -1px">
-                                Submit
-                            </button>
-                        </form>
+                        <h2>Terima kasih!</h2>
+                        <p class="lead">
+                            Semoga Formatur terpilih dapat melanjutkan tongkat estafet perjuangan yang lebih baik lagi!
+                        </p>
+                        <div class="mt-4">
+                            <!-- Tombol Logout -->
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn bg-gradient-danger w-20" style="border-radius: 8px;">
+                                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                                </button>
+                            </form>
+                        </div>  
                     </div>
                 </div>
-              </div>
             </div>
         </div>
     </div>
