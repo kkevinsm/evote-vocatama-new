@@ -3684,6 +3684,7 @@
       <div class="main-content" style="padding: 15px 30px 0px 80px;">
       <section class="section">
           <div class="row">
+            
             @foreach($datas as $data)
             <div class="card" style="height: 250px; width: 250px; margin: 5px; border: 1px solid #000;">
                 <div class="row" style="margin: 5px;">
@@ -3711,6 +3712,6 @@
         </section>
       </div>
     </div>
-  </div> -->
+  </div>
 </body>
 </html>
