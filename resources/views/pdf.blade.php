@@ -28,8 +28,7 @@
         margin: 0 -5px; /* Menghapus spasi antar kolom */
     }
 
-    .col-3 {
-        width: 25%; /* 4 card dalam satu baris */
+    .col-4 {
         padding: 5px; /* Jarak antar card */
         box-sizing: border-box;
     }
@@ -86,14 +85,11 @@
     /* Print Styles */
     @media print {
         .row {
-            display: flex;
-            flex-wrap: wrap;
-            margin: 0; /* Hapus margin */
+            page-break-inside: avoid;
         }
 
-        .col-3 {
+        .col-4 {
             float: left;
-            width: 25%; /* 4 card dalam satu baris */
             padding: 5px;
         }
 
@@ -121,7 +117,7 @@
             <section class="section">
                 <div class="row">
                     @foreach($datas as $data)
-                    <div class="col-3">
+                    <div class="col-4">
                         <div class="card">
                             <div class="card-header">
                                 <h6 style="color:#262626">Akun Pemilih {{ $data->instansi }}</h6>
