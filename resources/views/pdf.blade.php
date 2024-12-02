@@ -13,54 +13,38 @@
   <!-- <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> -->
 
   <style>
-        @media print {
-        .pdf-row {
-            display: flex;
-            flex-wrap: wrap;
-        }
-    }
-
-    .pdf-card {
-        float: left;
-        width: 32%;
-        margin-right: 2%;
-        margin-bottom: 15px;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        padding: 10px;
+    /* Global Reset */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
         box-sizing: border-box;
-        text-align: left;
     }
 
-    .pdf-card:nth-child(3n) {
-        margin-right: 0; /* Hapus margin pada card terakhir di setiap baris */
-    }
-    
-    .main-content .row {
+    /* Grid Layout */
+    .row {
         display: flex;
         flex-wrap: wrap;
-        gap: 15px; /* Jarak antar-card */
-        justify-content: space-around; /* Mengatur posisi card */
+        margin: 0 -5px; /* Menghapus spasi antar kolom */
     }
 
+    .col-3 {
+        width: 25%; /* 4 card dalam satu baris */
+        padding: 5px; /* Jarak antar card */
+        box-sizing: border-box;
+    }
+
+    /* Card Style */
     .card {
-        flex: 0 1 calc(25% - 15px); /* Ukuran 25% dari lebar, dikurangi jarak */
-        height: 250px;
-        margin: 0;
         border: 1px solid #ddd;
         border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        height: auto; /* Sesuaikan tinggi otomatis */
         overflow: hidden;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        background-color: #fff;
-    }
-
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     }
 
     .card-header {
@@ -73,12 +57,12 @@
     .card-header h6 {
         margin: 0;
         font-size: 14px;
-        color: #333;
         font-weight: bold;
+        color: #333;
     }
 
     .card-body {
-        padding: 15px;
+        padding: 10px;
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -88,7 +72,6 @@
         font-size: 12px;
         color: #555;
         margin-bottom: 5px;
-        display: block;
     }
 
     .card-body b {
@@ -97,7 +80,31 @@
     }
 
     .form-group {
-        margin-bottom: 0;
+        margin-bottom: 10px;
+    }
+
+    /* Print Styles */
+    @media print {
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0; /* Hapus margin */
+        }
+
+        .col-3 {
+            float: left;
+            width: 25%; /* 4 card dalam satu baris */
+            padding: 5px;
+        }
+
+        .card {
+            box-shadow: none; /* Hapus bayangan di mode cetak */
+        }
+
+        .card-header {
+            background-color: #fff; /* Hapus background di mode cetak */
+            color: #000; /* Warna teks lebih kontras */
+        }
     }
 </style>
 
@@ -114,28 +121,33 @@
             <section class="section">
                 <div class="row">
                     @foreach($datas as $data)
-                    <div class="card">
-                        <div class="card-header">
-                            <h6 style="color:#262626">Akun Pemilih {{ $data->instansi }}</h6>
-                        </div>
-                        <div class="card-body mb-0">
-                            <div class="form-group mb-0">
-                                <label>Nama</label>
-                                <label><b>{{ \Illuminate\Support\Str::limit($data->name, 20, '...') }}</b></label>
+                    <div class="col-3">
+                        <div class="card">
+                            <div class="card-header">
+                                <h6 style="color:#262626">Akun Pemilih {{ $data->instansi }}</h6>
                             </div>
-                            <div class="form-group mb-0">
-                                <label><b>Username: {{ $data->username }}</b></label>
-                            </div>
-                            <div class="form-group mb-0">
-                                <label><b>Password: {{ $data->password }}</b></label>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Nama:</label>
+                                    <b>{{ \Illuminate\Support\Str::limit($data->name, 20, '...') }}</b>
+                                </div>
+                                <div class="form-group">
+                                    <label>Username:</label>
+                                    <label><b>{{ $data->username }}</b></label>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password:</label>
+                                    <label><b>{{ $data->password }}</b></label>
+                                </div>
                             </div>
                         </div>
                     </div>
                     @endforeach
                 </div>
+                
             </section>
         </div>
     </div>    
-  </div> -->
+  </div>
 </body>
 </html>
