@@ -97,7 +97,7 @@
                         </div>
                         <div class="card-body mb-0">
                             <div class="form-group mb-0">
-                                <label>Nama Lengkap</label>
+                                <label>Nama</label>
                                 <label><b>{{ \Illuminate\Support\Str::limit($data->name, 20, '...') }}</b></label>
                             </div>
                             <div class="form-group mb-0">
