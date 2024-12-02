@@ -70,8 +70,6 @@ class VoterController extends Controller
 
         $pdf = Pdf::loadview('pdf', compact('datas'));
         $pdf->setPaper('A4', 'portrait');
-        // $pdf = PDF::loadView('pdf', compact('datas'));
-        // $pdf = PDF::loadview('pdf', compact('datas'));
 
         return $pdf->download('voter.pdf');
     }
