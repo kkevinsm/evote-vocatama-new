@@ -13,27 +13,30 @@ use App\Models\User;
 class GuestController extends Controller
 {
     public function index()
-    {
-        $datas = Candidate::all();
-        $roles = Role::all();
-        $groupedDatas = [];
+{
+    $datas = Candidate::all();
+    $roles = Role::all();
+    $groupedDatas = [];
 
-        foreach ($roles as $role) {
-            $groupedDatas[$role['name']] = [];
-        }
-
-        foreach ($datas as $data) {
-            $groupedDatas[$data['role']][] = $data;
-        }
-
-        // return $groupedDatas;
-        // return $roles;
-        return view('guest.index', compact([
-            'datas',
-            'roles',
-            'groupedDatas'
-        ]));
+    foreach ($roles as $role) {
+        $groupedDatas[$role['name']] = [];
     }
+
+    foreach ($datas as $data) {
+        $groupedDatas[$data['role']][] = $data;
+    }
+
+    // Ambil data admin
+    $adminData = User::where('id', 1)->first();
+
+    return view('guest.index', compact([
+        'datas',
+        'roles',
+        'groupedDatas',
+        'adminData' // Kirim data admin ke view
+    ]));
+}
+
 
     public function store(Request $request)
     {
