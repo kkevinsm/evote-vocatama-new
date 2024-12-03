@@ -95,8 +95,11 @@
                             <div class="card-body p-4">
                                 <div class="border-radius-lg py-2 shadow-sm justify-content-center" 
                                     style="background-image: url({{ asset('image/' . $data->image) }});
-                                            height: 300px; background-size: cover; width: 100%;"
-                                            class="mx-auto d-block">
+                                                       height: 300px; 
+                                            background-size: cover; 
+                                            background-position: center; 
+                                            background-repeat: no-repeat; 
+                                            width: 100%;">
                                 </div>
             
                                 <div class="row mt-2">
