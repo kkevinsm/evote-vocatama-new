@@ -27,7 +27,6 @@ class RoleController extends Controller
 
     public function update(Request $request)
     {
-        // Validasi input
         $validated = $request->validate([
             'id' => 'required|exists:roles,id',
             'name' => 'required|string|max:255',
